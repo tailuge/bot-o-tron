@@ -1,0 +1,19 @@
+{
+  "name": "lichess-node-bot",
+  "version": "1.0.0",
+  "description": "Lichess bot event and game code flow example",
+  "main": "Bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node Bot.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.16"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+  }
+}
