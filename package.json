@@ -4,7 +4,7 @@
   "description": "Lichess bot event and game code flow example",
   "main": "Bot.js",
   "scripts": {
-    "test": "node test/*",
+    "test": "tap test/*",
     "start": "node Bot.js"
   },
   "keywords": [],
@@ -14,6 +14,7 @@
     "coveralls": "^3.0.0",
     "express": "^4.16",
     "nyc": "^11.7.1",
+    "tap": "^11.1.4",
     "tape": "^4.9.0"
   },
   "dependencies": {
