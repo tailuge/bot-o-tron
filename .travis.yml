@@ -3,4 +3,4 @@ node_js:
   - "9.11.1"
 before_script:
 after_success:
-
+  - nyc report --reporter=text-lcov | coveralls
