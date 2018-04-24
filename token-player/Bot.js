@@ -6,7 +6,7 @@ const Game = require('./Game');
 /**
  * Get token from https://lichess.org/account/oauth/token/create
  * 
- * Put the token in the shel environment with
+ * Put the token in the shell environment with
  * 
  * export API_TOKEN=xxxxxxxxxxxxxx
  * 
