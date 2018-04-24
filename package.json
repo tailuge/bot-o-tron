@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "coveralls": "^3.0.0",
     "express": "^4.16",
     "tape": "^4.9.0"
   },
