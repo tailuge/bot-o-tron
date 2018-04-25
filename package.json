@@ -2,10 +2,10 @@
   "name": "lichess-node-bot",
   "version": "1.0.0",
   "description": "Lichess bot event and game code flow example",
-  "main": "Bot.js",
+  "main": "Main.js",
   "scripts": {
     "test": "tap test/*",
-    "start": "node Bot.js"
+    "start": "node Main.js"
   },
   "keywords": [],
   "author": "",

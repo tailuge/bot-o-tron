@@ -1,14 +1,13 @@
 const axios = require('axios');
 
 /**
- * Mirrors the web API to lichess https://lichess.org/api#tag/Chess-Bot
+ * Programatic interface to the web API of lichess https://lichess.org/api#tag/Chess-Bot
  *  
  */
 class LichessApi {
 
-
   /**
-   * Initialise with token.
+   * Initialise with access token from https://lichess.org/account/oauth/token/create.
    */
   constructor(token) {
     this.token = token;
@@ -16,7 +15,7 @@ class LichessApi {
   }
 
   acceptChallenge(challengeId) {
-    return this.post('/challenge/' + challengeId + '/accept');
+    return this.post('challenge/' + challengeId + '/accept');
   }
 
   declineChallenge(challengeId) {

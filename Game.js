@@ -7,12 +7,12 @@ class Game {
   /**
    * Initialise with interface to lichess.
    */
-  constructor(lichessApi) {
-    this.lichessApi = lichessApi;
+  constructor(api) {
+    this.api = api;
   }
 
   start(gameId) {
-    this.lichessApi.streamGame(gameId, this.handler);
+    this.api.streamGame(gameId, this.handler);
   }
 
   handler(event) {
