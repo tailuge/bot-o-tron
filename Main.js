@@ -1,7 +1,7 @@
 const RobotUser = require('./RobotUser');
 const LichessApi = require('./LichessApi');
 const Game = require('./Game');
-
+const LegalMovePlayer = require('./LegalMovePlayer');
 
 /**
  * 
@@ -16,26 +16,20 @@ const Game = require('./Game');
  * yarn start
  */
 
-//const Chess = require('chess.js').Chess;
-//var chess = new Chess();
-//chess.reset();
-//console.log(chess.ascii());
-
-
-
-
 const bearer = process.env.API_TOKEN;
 
 const api = new LichessApi(bearer);
 
+var account;
+
 function handleGameStart(gameId) {
-    const game = new Game(api);
-    game.start(gameId);
+  const game = new Game(api, account.data.username, new LegalMovePlayer());
+  game.start(gameId);
 }
 
 async function start() {
   console.log("Using API_TOKEN : " + bearer);
-  var account = await api.accountInfo();
+  account = await api.accountInfo();
   console.log("Playing as      : " + account.data.username);
   const player = new RobotUser(api, handleGameStart);
   player.subscribe();
