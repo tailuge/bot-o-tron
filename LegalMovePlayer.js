@@ -12,8 +12,9 @@ class LegalMovePlayer {
       return undefined;
     }
     console.log("legal moves : " + legalMoves.map(move => move.san));
-    var move = legalMoves[0].from + legalMoves[0].to;
-    return move;
+    var move = legalMoves[0];
+    var uciMove = move.from + move.to + (move.flags === 'p' ? move.piece : '');
+    return uciMove;
   }
 
 }

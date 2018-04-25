@@ -10,3 +10,15 @@ Try out lichess' bot interface https://lichess.org/api#tag/Chess-Bot
 6. `yarn start`
 
 
+To implement your chess bot you only need to create one class that implements the method:
+
+```
+  getNextMove(moves) {
+      return uciMove;
+  }
+```
+
+Where moves is a string of moves so far in uci format e.g. `"e2e4 b8c6 f2f4"`
+
+See `LegalMovePlayer` for minimal implementation using [chess.js](https://github.com/jhlywa/chess.js/blob/master/README.md)
+

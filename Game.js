@@ -24,6 +24,11 @@ class Game {
     var moves = '';
     var nextMove = '';
 
+    if (event.type === "chatLine" && event.username !== this.name) {
+      this.api.chat(this.gameId,event.room,"hi");
+      return;
+    }
+    
     if (event.type === "gameFull") {
       this.colour = this.playingAs(event);
       console.log(this.name + " is playing as : " + this.colour);
