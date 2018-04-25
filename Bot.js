@@ -47,7 +47,6 @@ function eventHandler(event) {
   if (event.challenge.rated == false) {
     console.log("Unrated challenge with gameId:" + event.challenge.id);
     var g = new Game(bearer);
-    
   }
 }
 

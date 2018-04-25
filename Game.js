@@ -39,6 +39,15 @@ class Game {
   }
 
 
+//const userInfo = await getUserInfo(token.token);
+ acceptChallenge(token) {
+  return axios.get('/account/me', {
+    baseURL: 'https://lichess.org/',
+    headers: { 'Authorization': 'Bearer ' + token.access_token }
+  });
+}
+
+
 }
 
 module.exports = Game;
