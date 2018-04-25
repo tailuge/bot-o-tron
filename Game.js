@@ -11,11 +11,14 @@ class Game {
     this.lichessApi = lichessApi;
   }
 
+  start(gameId) {
+    this.lichessApi.streamGame(gameId, this.handler);
+  }
+
+  handler(event) {
+    console.log("game event:" + JSON.stringify(event));
+  }
+
 }
 
 module.exports = Game;
-
-
-
-
-

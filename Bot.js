@@ -1,8 +1,11 @@
 const Game = require('./Game');
 const Player = require('./Player');
 const LichessApi = require('./LichessApi');
+const Chess = require('chess.js').Chess;
 
-
+var chess = new Chess();
+chess.reset();
+console.log(chess.ascii());
 /**
  * Get token from https://lichess.org/account/oauth/token/create
  * 

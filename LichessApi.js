@@ -20,23 +20,23 @@ class LichessApi {
   }
 
   declineChallenge(challengeId) {
-    return this.post('/challenge/' + challengeId + '/decline');
+    return this.post('challenge/' + challengeId + '/decline');
   }
 
   upgrade() {
-    return this.post('/bot/accounts/upgrade');
+    return this.post('bot/accounts/upgrade');
   }
 
   accountInfo() {
-    return this.get('/account/me');
+    return this.get('account/me');
   }
 
   makeMove(gameId, move) {
-    return this.post('/bot/game/' + gameId + '/move/' + move);
+    return this.post('bot/game/' + gameId + '/move/' + move);
   }
 
   abortGame(gameId) {
-    return this.post('/bot/game/' + gameId + '/abort');
+    return this.post('bot/game/' + gameId + '/abort');
   }
 
   streamEvents(handler) {
@@ -48,7 +48,7 @@ class LichessApi {
   }
 
   chat(gameId, room, text) {
-    return this.post('/bot/game/' + gameId + '/chat', {
+    return this.post('bot/game/' + gameId + '/chat', {
       room: room,
       text: text
     });

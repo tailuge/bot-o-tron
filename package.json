@@ -18,6 +18,7 @@
     "tape": "^4.9.0"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "chess.js": "^0.10.2"
   }
 }
