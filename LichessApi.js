@@ -6,13 +6,13 @@ const axios = require('axios');
  */
 class LichessApi {
 
-  baseURL = 'https://lichess.org/';
 
   /**
    * Initialise with token.
    */
   constructor(token) {
     this.token = token;
+    this.baseURL = 'https://lichess.org/';
   }
 
   acceptChallenge(challengeId) {
@@ -27,6 +27,10 @@ class LichessApi {
     return this.post('/bot/accounts/upgrade');
   }
 
+  accountInfo() {
+    return this.get('/account/me');
+  }
+
   makeMove(gameId, move) {
     return this.post('/bot/game/' + gameId + '/move/' + move);
   }
@@ -36,11 +40,11 @@ class LichessApi {
   }
 
   streamEvents(handler) {
-    return this.stream('/api/stream/event/', handler);
+    return this.stream('api/stream/event', handler);
   }
 
   streamGame(gameId, handler) {
-    return this.stream('/bot/stream/game/' + gameId, handler);
+    return this.stream('bot/game/stream/' + gameId, handler);
   }
 
   chat(gameId, room, text) {
@@ -50,8 +54,15 @@ class LichessApi {
     });
   }
 
+  get(URL) {
+    return axios.get(URL, {
+      baseURL: this.baseURL,
+      headers: { 'Authorization': 'Bearer ' + this.token }
+    });
+  }
+
   post(URL, body) {
-    return axios.get(URL, body ? body : {}, {
+    return axios.post(URL, body ? body : {}, {
       baseURL: this.baseURL,
       headers: { 'Authorization': 'Bearer ' + this.token }
     });
