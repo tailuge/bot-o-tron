@@ -1,5 +1,5 @@
 /**
- * RobotUser subscribes to challenges and spawns Games on accepting.
+ * RobotUser listens for challenges and spawns Games on accepting.
  *  
  */
 class RobotUser {
@@ -7,21 +7,20 @@ class RobotUser {
   /**
    * Initialise with interface to lichess and a handler for new games.
    */
-  constructor(api, gameStart) {
+  constructor(api, handleGameStart) {
     this.api = api;
-    this.gameStart = gameStart;
+    this.handleGameStart = handleGameStart;
   }
 
 
   subscribe() {
-    this.api.streamEvents((event) => this.eventHandler(this, event));
+    this.api.streamEvents((event) => this.eventHandler(event));
   }
 
   async handleChallenge(challenge) {
     if (challenge.rated) {
       console.log("declining rated challenge:" + challenge.id);
-      var declineStatus = await this.api.declineChallenge(challenge.id);
-      console.log("status : " + declineStatus.statusText);
+      this.api.declineChallenge(challenge.id);
     }
     else {
       console.log("accepting unrated challenge:" + challenge.id);
@@ -30,14 +29,13 @@ class RobotUser {
     }
   }
 
-  eventHandler(self, event) {
-    console.log("event.type : " + event.type);
+  eventHandler(event) {
     if (event.type === "challenge") {
-      self.handleChallenge(event.challenge);
+      this.handleChallenge(event.challenge);
       return;
     }
     if (event.type === "gameStart") {
-      self.gameStart(event.game.id);
+      this.handleGameStart(event.game.id);
       return;
     }
     console.log("Unhandled event : " + JSON.stringify(event));

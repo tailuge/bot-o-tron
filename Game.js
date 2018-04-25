@@ -16,12 +16,11 @@ class Game {
 
   start(gameId) {
     this.gameId = gameId;
-    this.api.streamGame(gameId, (event) => { this.handler(event) });
+    this.api.streamGame(gameId, (event) => this.handler(event));
   }
 
   handler(event) {
-    var moves = '';
-    var nextMove = '';
+    var moves;
 
     if (event.type === "chatLine") {
       if (event.username !== this.name) {
@@ -41,7 +40,7 @@ class Game {
     }
 
     if (this.isTurn(this.colour, moves)) {
-      nextMove = this.player.getNextMove(moves);
+      const nextMove = this.player.getNextMove(moves);
       console.log(this.name + " as " + this.colour + " to move " + nextMove);
       if (nextMove) {
         this.api.makeMove(this.gameId, nextMove);
@@ -59,8 +58,7 @@ class Game {
   isTurn(colour, moves) {
     var parity = moves.split(' ').length % 2;
     if (moves === '') { parity = 0; }
-    if (colour === "white") { return (parity == 0); }
-    return (parity === 1);
+    return (colour === "white") ? (parity === 0) : (parity === 1);
   }
 }
 

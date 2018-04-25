@@ -8,10 +8,9 @@ class LegalMovePlayer {
     chess.reset();
     moves.split(' ').forEach(move => chess.move(move, { sloppy: true }));
     var legalMoves = chess.moves({ verbose: true });
-    if (legalMoves.length == 0) {
+    if (legalMoves.length === 0) {
       return undefined;
     }
-    console.log("legal moves : " + legalMoves.map(move => move.san));
     var move = legalMoves[0];
     var uciMove = move.from + move.to + (move.flags === 'p' ? move.piece : '');
     return uciMove;
@@ -19,4 +18,4 @@ class LegalMovePlayer {
 
 }
 
-module.exports = LegalMovePlayer
+module.exports = LegalMovePlayer;
