@@ -6,6 +6,7 @@ Try out lichess' bot interface https://lichess.org/api#tag/Chess-Bot
 2. `yarn install`
 3. `yarn test`
 4. `nyc yarn test`
-2. `export API_TOKEN=xxxxxxxxxx`
-4. `node Bot.js`
+5. `export API_TOKEN=xxxxxxxxxx`
+6. `yarn start`
+
 

@@ -1,5 +1,5 @@
-const axios = require('axios');
 const Game = require('./Game');
+const Player = require('./Player');
 const LichessApi = require('./LichessApi');
 
 
@@ -20,11 +20,9 @@ async function start() {
   console.log("Using API_TOKEN : " + bearer);
   var account = await lichessApi.accountInfo();
   console.log("Playing as      : " + account.data.username);
-  lichessApi.streamEvents(handler);
+  const player = new Player(lichessApi);
+  player.subscribe();
 }
 
-function handler(event) {
-  console.log("event: " + event);
-}
 
 start();

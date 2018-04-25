@@ -72,10 +72,10 @@ class LichessApi {
   /**
    * Connect to stream with handler.
    */
-  stream(URL, handler) {
+  stream(url, handler) {
     axios({
         method: 'get',
-        url: this.baseURL + URL,
+        url: this.baseURL + url,
         headers: { 'Authorization': 'Bearer ' + this.token },
         responseType: 'stream'
       })

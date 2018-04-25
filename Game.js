@@ -11,10 +11,6 @@ class Game {
     this.lichessApi = lichessApi;
   }
 
-  accept(challengeId) {
-    
-  }
-
 }
 
 module.exports = Game;
