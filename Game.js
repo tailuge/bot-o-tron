@@ -20,18 +20,19 @@ class Game {
   }
 
   handler(event) {
-    console.log("game event:" + JSON.stringify(event));
     var moves = '';
     var nextMove = '';
 
-    if (event.type === "chatLine" && event.username !== this.name) {
-      this.api.chat(this.gameId,event.room,"hi");
+    if (event.type === "chatLine") {
+      if (event.username !== this.name) {
+        this.api.chat(this.gameId, event.room, "hi");
+      }
       return;
     }
-    
+
     if (event.type === "gameFull") {
       this.colour = this.playingAs(event);
-      console.log(this.name + " is playing as : " + this.colour);
+      console.log(this.name + " is playing as " + this.colour);
       moves = event.state.moves;
     }
 
@@ -41,7 +42,7 @@ class Game {
 
     if (this.isTurn(this.colour, moves)) {
       nextMove = this.player.getNextMove(moves);
-      console.log(this.name + " as " + this.colour + " to move : " + nextMove);
+      console.log(this.name + " as " + this.colour + " to move " + nextMove);
       if (nextMove) {
         this.api.makeMove(this.gameId, nextMove);
       }
