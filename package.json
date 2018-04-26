@@ -13,7 +13,6 @@
   "license": "ISC",
   "devDependencies": {
     "coveralls": "^3.0.0",
-    "express": "^4.16",
     "nyc": "^11.7.1",
     "tap": "^11.1.4",
     "tape": "^4.9.0",
@@ -22,6 +21,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "chess.js": "^0.10.2"
+    "chess.js": "^0.10.2",
+    "express": "^4.16.3"
   }
 }
