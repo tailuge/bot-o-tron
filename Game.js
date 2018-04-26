@@ -56,7 +56,7 @@ class Game {
   }
 
   isTurn(colour, moves) {
-    var parity = (moves === '') ? 0 : moves.split(' ').length % 2;
+    var parity = (moves === "") ? 0 : moves.split(" ").length % 2;
     return (colour === "white") ? (parity === 0) : (parity === 1);
   }
 }

@@ -1,7 +1,7 @@
-const RobotUser = require('./RobotUser');
-const LichessApi = require('./LichessApi');
-const Game = require('./Game');
-const LegalMovePlayer = require('./LegalMovePlayer');
+const RobotUser = require("./RobotUser");
+const LichessApi = require("./LichessApi");
+const Game = require("./Game");
+const LegalMovePlayer = require("./LegalMovePlayer");
 
 /**
  * 

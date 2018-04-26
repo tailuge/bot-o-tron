@@ -1,4 +1,4 @@
-const axios = require('axios');
+const axios = require("axios");
 
 /**
  * Programatic interface to the web API of lichess https://lichess.org/api#tag/Chess-Bot
@@ -11,43 +11,43 @@ class LichessApi {
    */
   constructor(token) {
     this.token = token;
-    this.baseURL = 'https://lichess.org/';
+    this.baseURL = "https://lichess.org/";
   }
 
   acceptChallenge(challengeId) {
-    return this.post('challenge/' + challengeId + '/accept');
+    return this.post("challenge/" + challengeId + "/accept");
   }
 
   declineChallenge(challengeId) {
-    return this.post('challenge/' + challengeId + '/decline');
+    return this.post("challenge/" + challengeId + "/decline");
   }
 
   upgrade() {
-    return this.post('bot/accounts/upgrade');
+    return this.post("bot/accounts/upgrade");
   }
 
   accountInfo() {
-    return this.get('account/me');
+    return this.get("account/me");
   }
 
   makeMove(gameId, move) {
-    return this.post('bot/game/' + gameId + '/move/' + move);
+    return this.post("bot/game/" + gameId + "/move/" + move);
   }
 
   abortGame(gameId) {
-    return this.post('bot/game/' + gameId + '/abort');
+    return this.post("bot/game/" + gameId + "/abort");
   }
 
   streamEvents(handler) {
-    return this.stream('api/stream/event', handler);
+    return this.stream("api/stream/event", handler);
   }
 
   streamGame(gameId, handler) {
-    return this.stream('bot/game/stream/' + gameId, handler);
+    return this.stream("bot/game/stream/" + gameId, handler);
   }
 
   chat(gameId, room, text) {
-    return this.post('bot/game/' + gameId + '/chat', {
+    return this.post("bot/game/" + gameId + "/chat", {
       room: room,
       text: text
     });
@@ -56,14 +56,14 @@ class LichessApi {
   get(URL) {
     return axios.get(URL, {
       baseURL: this.baseURL,
-      headers: { 'Authorization': 'Bearer ' + this.token }
+      headers: { "Authorization": "Bearer " + this.token }
     });
   }
 
   post(URL, body) {
     return axios.post(URL, body ? body : {}, {
       baseURL: this.baseURL,
-      headers: { 'Authorization': 'Bearer ' + this.token }
+      headers: { "Authorization": "Bearer " + this.token }
     });
   }
 
@@ -73,13 +73,13 @@ class LichessApi {
    */
   stream(url, handler) {
     axios({
-        method: 'get',
+        method: "get",
         url: this.baseURL + url,
-        headers: { 'Authorization': 'Bearer ' + this.token },
-        responseType: 'stream'
+        headers: { "Authorization": "Bearer " + this.token },
+        responseType: "stream"
       })
-      .then(stream => stream.data.on('data', data => {
-        data = data.toString('ascii').trim();
+      .then(stream => stream.data.on("data", data => {
+        data = data.toString("ascii").trim();
         if (data) {
           handler(JSON.parse(data));
         }
