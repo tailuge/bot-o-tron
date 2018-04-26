@@ -5,7 +5,6 @@ const LegalMovePlayer = require("./LegalMovePlayer");
 
 
 /**
- * 
  * Starts a RobotUser (lichess account defined by API_TOKEN) that listens for challenges
  * and spawns games for unrated challenges.
  * 
@@ -40,3 +39,16 @@ async function start() {
 
 
 start();
+
+// heroku stay alive server
+
+const express = require('express');
+const PORT = process.env.PORT || 5000;
+
+express()
+  .get('/', (req, res) => res.send('Running as ' + account.data.username))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+  
+
+
+
