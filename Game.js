@@ -19,35 +19,35 @@ class Game {
     this.api.streamGame(gameId, (event) => this.handler(event));
   }
 
-  handler(event) {
-    var moves;
+  handleChatLine(event) {
+    if (event.username !== this.name) {
+      this.api.chat(this.gameId, event.room, "hi");
+    }
+  }
 
+
+  handler(event) {
     if (event.type === "chatLine") {
-      if (event.username !== this.name) {
-        this.api.chat(this.gameId, event.room, "hi");
-      }
-      return;
+      return this.handleChatLine(event);
     }
 
     if (event.type === "gameFull") {
       this.colour = this.playingAs(event);
-      console.log(this.name + " is playing as " + this.colour);
-      moves = event.state.moves;
+      return this.playNextMove(event.state.moves);
     }
 
     if (event.type === "gameState") {
-      moves = event.moves;
+      return this.playNextMove(event.moves);
     }
+  }
 
+  playNextMove(moves) {
     if (this.isTurn(this.colour, moves)) {
       const nextMove = this.player.getNextMove(moves);
       console.log(this.name + " as " + this.colour + " to move " + nextMove);
       if (nextMove) {
         this.api.makeMove(this.gameId, nextMove);
       }
-    }
-    else {
-      console.log("Other side to move");
     }
   }
 
@@ -56,8 +56,7 @@ class Game {
   }
 
   isTurn(colour, moves) {
-    var parity = moves.split(' ').length % 2;
-    if (moves === '') { parity = 0; }
+    var parity = (moves === '') ? 0 : moves.split(' ').length % 2;
     return (colour === "white") ? (parity === 0) : (parity === 1);
   }
 }
