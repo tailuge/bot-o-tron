@@ -3,6 +3,7 @@ const LichessApi = require("./LichessApi");
 const Game = require("./Game");
 const LegalMovePlayer = require("./LegalMovePlayer");
 
+
 /**
  * 
  * Starts a RobotUser (lichess account defined by API_TOKEN) that listens for challenges
@@ -22,8 +23,10 @@ const api = new LichessApi(bearer);
 
 var account;
 
+const player = new LegalMovePlayer();
+
 function handleGameStart(gameId) {
-  const game = new Game(api, account.data.username, new LegalMovePlayer());
+  const game = new Game(api, account.data.username, player);
   game.start(gameId);
 }
 
