@@ -4,7 +4,7 @@
   "description": "Lichess bot event and game code flow example",
   "main": "src/Main.js",
   "scripts": {
-    "test": "tap test/*",
+    "test": "nyc tap test/*",
     "start": "node src/Main.js",
     "build": "webpack -p"
   },
