@@ -48,8 +48,8 @@ class LichessApi {
 
   chat(gameId, room, text) {
     return this.post("bot/game/" + gameId + "/chat", {
-      room: room,
-      text: text
+      room,
+      text
     });
   }
 
