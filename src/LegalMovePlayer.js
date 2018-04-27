@@ -25,8 +25,11 @@ class LegalMovePlayer {
       legalMoves = mates;
     }
 
+    if (legalMoves.length === 0) {
+      return;
+    }
+    
     var move = legalMoves[Math.floor(Math.random() * legalMoves.length)];
-    console.log(JSON.stringify(move));
     var uciMove = move.from + move.to + (move.flags === "p" ? move.piece : "");
     return uciMove;
 
