@@ -16,8 +16,10 @@ const LegalMovePlayer = require("./LegalMovePlayer");
  * yarn start
  */
 
-// Load nodejs environment variables from `.env` file
-require('dotenv').config();
+// Load nodejs environment variables from `.env` file, in development mode
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load();
+}
 
 const bearer = process.env.API_TOKEN;
 
