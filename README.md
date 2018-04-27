@@ -4,12 +4,17 @@ Try out [lichess'](https://lichess.org) bot interface https://lichess.org/api#ta
 
 ### Setup
 
-- Get an [API token](https://lichess.org/account/oauth/token) from lichess.org and add it to the `.env` file, see [`.env.example`](.env.example) for more details.
+- Get an [API token](https://lichess.org/account/oauth/token) from lichess.org.
 
 ```bash
-$ mv .env.example .env
 $ nvm use v9.11.1
 $ yarn install
+
+# Linux
+$ export API_TOKEN=xxxxxxxxxx
+
+# Windows
+$ setx API_TOKEN xxxxxxxxxx
 ```
 
 ### Test
