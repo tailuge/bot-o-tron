@@ -19,11 +19,11 @@ class RobotUser {
 
   async handleChallenge(challenge) {
     if (challenge.rated) {
-      console.log("declining rated challenge:" + challenge.id);
+      console.log("Declining rated challenge from " + challenge.challenger.id);
       this.api.declineChallenge(challenge.id);
     }
     else {
-      console.log("accepting unrated challenge:" + challenge.id);
+      console.log("Accepting unrated challenge from " + challenge.challenger.id);
       var accept = await this.api.acceptChallenge(challenge.id);
       console.log("status : " + accept.statusText);
     }

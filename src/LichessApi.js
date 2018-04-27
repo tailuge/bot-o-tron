@@ -57,14 +57,14 @@ class LichessApi {
     return axios.get(URL, {
       baseURL: this.baseURL,
       headers: this.headers
-    }).catch(err => console.log(err.response));
+    }).catch(err => console.log(err.response.data));
   }
 
   post(URL, body) {
     return axios.post(URL, body || {}, {
       baseURL: this.baseURL,
       headers: this.headers
-    }).catch(err => console.log(err.response));
+    }).catch(err => console.log(err.response.data));
   }
 
   /**
