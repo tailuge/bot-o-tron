@@ -42,13 +42,10 @@ start();
 
 // heroku stay alive server
 
+
 const express = require('express');
 const PORT = process.env.PORT || 5000;
 
 express()
-  .get('/', (req, res) => res.send('Running as ' + account.data.username))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
-  
-
-
-
+  .get('/', (req, res) => res.send(`<html><body>Callenge <a href="https://lichess.org/@/${account.data.username}">${account.data.username}</a></body></html>`))
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));

@@ -10,16 +10,16 @@ class LichessApi {
    * Initialise with access token from https://lichess.org/account/oauth/token/create.
    */
   constructor(token) {
-    this.token = token;
     this.baseURL = "https://lichess.org/";
+    this.headers = { "Authorization": `Bearer ${token}` };
   }
 
   acceptChallenge(challengeId) {
-    return this.post("api/challenge/" + challengeId + "/accept");
+    return this.post(`api/challenge/${challengeId}/accept`);
   }
 
   declineChallenge(challengeId) {
-    return this.post("api/challenge/" + challengeId + "/decline");
+    return this.post(`api/challenge/${challengeId}/decline`);
   }
 
   upgrade() {
@@ -31,11 +31,11 @@ class LichessApi {
   }
 
   makeMove(gameId, move) {
-    return this.post("api/bot/game/" + gameId + "/move/" + move);
+    return this.post(`api/bot/game/${gameId}/move/${move}`);
   }
 
   abortGame(gameId) {
-    return this.post("api/bot/game/" + gameId + "/abort");
+    return this.post(`api/bot/game/${gameId}/abort`);
   }
 
   streamEvents(handler) {
@@ -43,11 +43,11 @@ class LichessApi {
   }
 
   streamGame(gameId, handler) {
-    return this.stream("api/bot/game/stream/" + gameId, handler);
+    return this.stream(`api/bot/game/stream/${gameId}`, handler);
   }
 
   chat(gameId, room, text) {
-    return this.post("api/bot/game/" + gameId + "/chat", {
+    return this.post(`api/bot/game/${gameId}/chat`, {
       room,
       text
     });
@@ -56,15 +56,15 @@ class LichessApi {
   get(URL) {
     return axios.get(URL, {
       baseURL: this.baseURL,
-      headers: { "Authorization": "Bearer " + this.token }
-    });
+      headers: this.headers
+    }).catch(err => console.log(err.response));
   }
 
   post(URL, body) {
-    return axios.post(URL, body ? body : {}, {
+    return axios.post(URL, body || {}, {
       baseURL: this.baseURL,
-      headers: { "Authorization": "Bearer " + this.token }
-    });
+      headers: this.headers
+    }).catch(err => console.log(err.response));
   }
 
   /**
@@ -74,7 +74,7 @@ class LichessApi {
     axios({
         method: "get",
         url: this.baseURL + url,
-        headers: { "Authorization": "Bearer " + this.token },
+        headers: this.headers,
         responseType: "stream"
       })
       .then(stream => stream.data.on("data", data => {
