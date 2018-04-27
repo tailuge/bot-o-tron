@@ -22,6 +22,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "chess.js": "^0.10.2",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3"
   }
 }

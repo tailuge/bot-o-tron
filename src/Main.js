@@ -16,6 +16,9 @@ const LegalMovePlayer = require("./LegalMovePlayer");
  * yarn start
  */
 
+// Load nodejs environment variables from `.env` file
+require('dotenv').config();
+
 const bearer = process.env.API_TOKEN;
 
 const api = new LichessApi(bearer);
