@@ -67,7 +67,6 @@ class LichessApi {
     });
   }
 
-
   /**
    * Connect to stream with handler.
    */
