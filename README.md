@@ -6,11 +6,12 @@ Try out lichess' bot interface https://lichess.org/api#tag/Chess-Bot
 2. `yarn install`
 3. `yarn test`
 4. `nyc yarn test`
-5. `export API_TOKEN=xxxxxxxxxx`
 6. `yarn start`
 
+- Get an [API token](https://lichess.org/account/oauth/token) from lichess.org and add it to the `.env` file, see [`.env.example`](.env.example) for more details.
 
 To implement your chess bot you only need to create one class that implements the method:
+$ mv .env.example .env
 
 ```
   getNextMove(moves) {
