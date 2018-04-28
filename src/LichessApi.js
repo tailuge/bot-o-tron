@@ -11,7 +11,7 @@ class LichessApi {
    */
   constructor(token) {
     this.baseURL = "https://lichess.org/";
-    this.headers = { "Authorization": `Bearer ${token}` };
+    this.headers = { "Authorization": `Bearer ${token}`, "Cache-Control": "no-cache" };
   }
 
   acceptChallenge(challengeId) {
@@ -64,7 +64,7 @@ class LichessApi {
   }
 
   post(URL, body) {
-    console.log(`POST ${URL} `+JSON.stringify(body || {}));
+    console.log(`POST ${URL} ` + JSON.stringify(body || {}));
     return axios.post(URL, body || {}, {
         baseURL: this.baseURL,
         headers: this.headers
