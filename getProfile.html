@@ -14,10 +14,11 @@
       try {
         const response = await axios.get('/api/account', {
           baseURL: 'https://lichess.org/',
+//          baseURL: 'https://listage.ovh/',
           headers: { 'Authorization': 'Bearer ' + token }
         });
         console.log(response);
-        output.innerHTML = response;
+        output.innerHTML = JSON.stringify(response);
       }
       catch (error) {
         console.error(error);
