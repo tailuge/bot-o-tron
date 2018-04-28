@@ -1,3 +1,5 @@
+const Game = require("./Game");
+
 /**
  * RobotUser listens for challenges and spawns Games on accepting.
  *  
@@ -5,16 +7,35 @@
 class RobotUser {
 
   /**
-   * Initialise with interface to lichess and a handler for new games.
+   * Initialise with interface to lichess and a player.
    */
-  constructor(api, handleGameStart) {
+  constructor(api, player) {
     this.api = api;
-    this.handleGameStart = handleGameStart;
+    this.player = player;
   }
 
-
-  subscribe() {
+  async start() {
+    this.account = await this.api.accountInfo();
+    console.log("Playing as      : " + this.account.data.username);
     this.api.streamEvents((event) => this.eventHandler(event));
+  }
+
+  eventHandler(event) {
+    switch (event.type) {
+      case "challenge":
+        this.handleChallenge(event.challenge);
+        break;
+      case "gameStart":
+        this.handleGameStart(event.game.id);
+        break;
+      default:
+        console.log("Unhandled event : " + JSON.stringify(event));
+    }
+  }
+
+  handleGameStart(id) {
+    const game = new Game(this.api, this.account.data.username, this.player);
+    game.start(id);
   }
 
   async handleChallenge(challenge) {
@@ -25,21 +46,10 @@ class RobotUser {
     else {
       console.log("Accepting unrated challenge from " + challenge.challenger.id);
       var accept = await this.api.acceptChallenge(challenge.id);
-      console.log("status : " + accept.statusText);
+      console.log("Status : " + accept.statusText);
     }
   }
 
-  eventHandler(event) {
-    if (event.type === "challenge") {
-      this.handleChallenge(event.challenge);
-      return;
-    }
-    if (event.type === "gameStart") {
-      this.handleGameStart(event.game.id);
-      return;
-    }
-    console.log("Unhandled event : " + JSON.stringify(event));
-  }
 }
 
 module.exports = RobotUser;

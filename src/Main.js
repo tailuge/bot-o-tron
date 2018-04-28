@@ -1,14 +1,14 @@
 const RobotUser = require("./RobotUser");
 const LichessApi = require("./LichessApi");
-const Game = require("./Game");
 const LegalMovePlayer = require("./LegalMovePlayer");
 
 
 /**
  * Starts a RobotUser (lichess account defined by API_TOKEN) that listens for challenges
- * and spawns games for unrated challenges.
+ * and spawns games for unrated challenges. A player object must be supplied that can
+ * produce the next move to play given the previous moves.
  * 
- * Token created on BOT account from https://lichess.org/account/oauth/token/create
+ * Token can be created on BOT accounts at https://lichess.org/account/oauth/token/create
  * Put the token in the shell environment with
  * 
  * export API_TOKEN=xxxxxxxxxxxxxx
@@ -19,26 +19,12 @@ const LegalMovePlayer = require("./LegalMovePlayer");
 const bearer = process.env.API_TOKEN;
 
 const api = new LichessApi(bearer);
-
-var account;
-
 const player = new LegalMovePlayer();
+const robot = new RobotUser(api, player);
 
-function handleGameStart(gameId) {
-  const game = new Game(api, account.data.username, player);
-  game.start(gameId);
-}
-
-async function start() {
-  console.log("Using API_TOKEN : " + bearer);
-  account = await api.accountInfo();
-  console.log("Playing as      : " + account.data.username);
-  const player = new RobotUser(api, handleGameStart);
-  player.subscribe();
-}
+robot.start();
 
 
-start();
 
 // heroku stay alive server
 
