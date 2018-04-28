@@ -4,7 +4,7 @@ const LegalMovePlayer = require("./LegalMovePlayer");
 
 
 /**
- * Starts a RobotUser (lichess account defined by API_TOKEN) that listens for challenges
+ * Start a RobotUser (lichess account defined by API_TOKEN) that listens for challenges
  * and spawns games for unrated challenges. A player object must be supplied that can
  * produce the next move to play given the previous moves.
  * 
@@ -14,6 +14,7 @@ const LegalMovePlayer = require("./LegalMovePlayer");
  * export API_TOKEN=xxxxxxxxxxxxxx
  * yarn install
  * yarn start
+ * 
  */
 
 const bearer = process.env.API_TOKEN;
@@ -26,12 +27,11 @@ robot.start();
 
 
 
-// heroku stay alive server
-
+// heroku stay alive server (not necessary otherwise)
 
 const express = require('express');
 const PORT = process.env.PORT || 5000;
 
 express()
-  .get('/', (req, res) => res.send(`<html><body>Callenge <a href="https://lichess.org/@/${account.data.username}">${account.data.username}</a></body></html>`))
-  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+  .get('/', (req, res) => res.send(`<h1>Callenge <a href="https://lichess.org/@/${robot.account.data.username}">${robot.account.data.username}</a> on lichess</h1>`))
+  .listen(PORT, () => console.log(`Keep alive server listening on ${PORT}`));

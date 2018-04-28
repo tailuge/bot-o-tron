@@ -16,7 +16,7 @@ class RobotUser {
 
   async start() {
     this.account = await this.api.accountInfo();
-    console.log("Playing as      : " + this.account.data.username);
+    console.log("Playing as " + this.account.data.username);
     this.api.streamEvents((event) => this.eventHandler(event));
   }
 
@@ -46,7 +46,7 @@ class RobotUser {
     else {
       console.log("Accepting unrated challenge from " + challenge.challenger.id);
       var accept = await this.api.acceptChallenge(challenge.id);
-      console.log("Status : " + accept.statusText);
+      console.log("Status " + accept.statusText);
     }
   }
 

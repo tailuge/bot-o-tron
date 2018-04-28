@@ -32,17 +32,19 @@ class Game {
   }
 
   handler(event) {
-    if (event.type === "chatLine") {
-      return this.handleChatLine(event);
-    }
-
-    if (event.type === "gameFull") {
-      this.colour = this.playingAs(event);
-      return this.playNextMove(event.state.moves);
-    }
-
-    if (event.type === "gameState") {
-      return this.playNextMove(event.moves);
+    switch (event.type) {
+      case "chatLine":
+        this.handleChatLine(event);
+        break;
+      case "gameFull":
+        this.colour = this.playingAs(event);
+        this.playNextMove(event.state.moves);
+        break;
+      case "gameState":
+        this.playNextMove(event.moves);
+        break;
+      default:
+        console.log("Unhandled game event : " + JSON.stringify(event));
     }
   }
 
