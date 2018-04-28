@@ -42,3 +42,4 @@ Where moves is a string of moves so far in uci format e.g. `"e2e4 b8c6 f2f4"`
 
 See [`LegalMovePlayer`](src/LegalMovePlayer.js) for minimal implementation using [chess.js](https://github.com/jhlywa/chess.js/blob/master/README.md)
 
+Watch how a BOT communicates with the server https://tailuge.github.io/bot-o-tron/dist/testBot.html
