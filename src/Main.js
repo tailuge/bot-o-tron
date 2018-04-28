@@ -1,5 +1,4 @@
 const RobotUser = require("./RobotUser");
-const LichessApi = require("./LichessApi");
 const LegalMovePlayer = require("./LegalMovePlayer");
 
 
@@ -17,21 +16,20 @@ const LegalMovePlayer = require("./LegalMovePlayer");
  * 
  */
 
-const bearer = process.env.API_TOKEN;
+const token = process.env.API_TOKEN;
 
-const api = new LichessApi(bearer);
 const player = new LegalMovePlayer();
-const robot = new RobotUser(api, player);
+const robot = new RobotUser(token, player);
 
 robot.start();
 
 
 
-// heroku stay alive server (not necessary otherwise)
+// heroku wakeup server (not necessary otherwise)
 
-const express = require('express');
+const express = require("express");
 const PORT = process.env.PORT || 5000;
 
 express()
-  .get('/', (req, res) => res.send(`<h1>Callenge <a href="https://lichess.org/@/${robot.account.data.username}">${robot.account.data.username}</a> on lichess</h1>`))
+  .get("/", (req, res) => res.send(`<h1>Callenge <a href="https://lichess.org/@/${robot.account.data.username}">${robot.account.data.username}</a> on lichess</h1>`))
   .listen(PORT, () => console.log(`Keep alive server listening on ${PORT}`));

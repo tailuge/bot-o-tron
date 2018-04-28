@@ -1,3 +1,4 @@
+const LichessApi = require("./LichessApi");
 const Game = require("./Game");
 
 /**
@@ -9,8 +10,8 @@ class RobotUser {
   /**
    * Initialise with interface to lichess and a player.
    */
-  constructor(api, player) {
-    this.api = api;
+  constructor(token, player) {
+    this.api = new LichessApi(token);
     this.player = player;
   }
 
