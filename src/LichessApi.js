@@ -11,7 +11,7 @@ class LichessApi {
    */
   constructor(token) {
     this.baseURL = "https://lichess.org/";
-    this.headers = { "Authorization": `Bearer ${token}`, "Cache-Control": "no-cache" };
+    this.headers = { "Authorization": `Bearer ${token}` };
   }
 
   acceptChallenge(challengeId) {
