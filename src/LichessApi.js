@@ -56,7 +56,7 @@ class LichessApi {
   get(URL) {
     console.log(`GET ${URL}`);
     console.log(JSON.stringify(this.headers));
-    return axios.get(URL, {
+    return axios.get(URL +"?v=" + Date.now(), {
         baseURL: this.baseURL,
         headers: this.headers
       }).then(data => { console.log(JSON.stringify(data.data)); return data; })
