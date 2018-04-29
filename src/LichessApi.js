@@ -1,5 +1,5 @@
 const axios = require("axios");
-
+const oboe = require("oboe");
 /**
  * Programatic interface to the web API of lichess https://lichess.org/api#tag/Chess-Bot
  *  
@@ -55,8 +55,7 @@ class LichessApi {
 
   get(URL) {
     console.log(`GET ${URL}`);
-    console.log(JSON.stringify(this.headers));
-    return axios.get(URL +"?v=" + Date.now(), {
+    return axios.get(URL + "?v=" + Date.now(), {
         baseURL: this.baseURL,
         headers: this.headers
       }).then(data => { console.log(JSON.stringify(data.data)); return data; })
@@ -74,24 +73,26 @@ class LichessApi {
 
   /**
    * Connect to stream with handler.
+   * 
+   * The axios library does not support streams in the browser so use oboe.
    */
   stream(URL, handler) {
-    console.log(`GET ${URL}`);
-    axios({
-        method: "get",
+    console.log(`GET ${URL} stream`);
+    oboe({
+        method: "GET",
         url: this.baseURL + URL,
         headers: this.headers,
-        responseType: "stream"
       })
-      .then(stream => stream.data.on("data", data => {
-        data = data.toString("ascii").trim();
+      .node('{type}', function(data) {
         if (data) {
-          console.log(`STREAM data : ${data}`);
-          handler(JSON.parse(data));
+          console.log(`STREAM data : ` + JSON.stringify(data));
+          handler(data);
         }
-      }))
-      .catch(err => console.log(err));
+      }).fail(function(errorReport) {
+        console.error(JSON.stringify(errorReport));
+      });
   }
+
 }
 
 module.exports = LichessApi;

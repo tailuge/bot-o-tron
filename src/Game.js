@@ -53,7 +53,6 @@ class Game {
     if (this.isTurn(this.colour, moves)) {
       const nextMove = this.player.getNextMove(moves);
       if (nextMove) {
-        console.log("Given previous moves " + previousMoves);
         console.log(this.name + " as " + this.colour + " to move " + nextMove);
         this.api.makeMove(this.gameId, nextMove);
       }

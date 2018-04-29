@@ -8,19 +8,19 @@
   <style>
     div {
       border-radius: 5px;
-      background: #dddddd;
+      background: #9d9;
       padding: 5px;
       border: 5px;
       margin: 5px;
+      font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+      font-size: 11px;
     }
   </style>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
   <script src="library.js"></script>
   <script></script>
   <script>
     /*global library, Chess*/
-
 
     window.console = {
       log: function(str) {
@@ -66,16 +66,14 @@
     async function start() {
       var token = document.getElementById("token").value;
       var robot = new library(token, new SimplePlayer());
-      console.log("Fetching profile using token " + token);
       robot.start();
-      console.log("Running as " + robot.account.data.username);
     }
   </script>
 </head>
 
 <body>
   <h4>Test your lichess BOT account in your browser</h4>
-  <p>This javascript page will use your BOT token to listen for challenges and play unrated games by playing random moves. You can watch the events and messages passed between client and server.</p><br/>Token: <input type="text" id="token"><button onclick="start()">Start BOT</button><br/><br/>
+  <p>This javascript page will use your BOT token to listen for challenges and play unrated games using random moves. You can watch the events and messages passed between client and server.</p><br/>Token: <input type="text" id="token"><button onclick="start()">Start BOT</button><br/><br/>
   <p id="log"></p>
 </body>
 
