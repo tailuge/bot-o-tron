@@ -83,16 +83,15 @@ class LichessApi {
         url: this.baseURL + URL,
         headers: this.headers,
       })
-      .node('{type}', function(data) {
+      .node("{type}", function(data) {
         if (data) {
-          console.log(`STREAM data : ` + JSON.stringify(data));
+          console.log("STREAM data : " + JSON.stringify(data));
           handler(data);
         }
       }).fail(function(errorReport) {
         console.error(JSON.stringify(errorReport));
       });
   }
-
 }
 
 module.exports = LichessApi;
