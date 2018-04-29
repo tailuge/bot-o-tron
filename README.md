@@ -42,4 +42,12 @@ Where moves is a string of moves so far in uci format e.g. `"e2e4 b8c6 f2f4"`
 
 See [`LegalMovePlayer`](src/LegalMovePlayer.js) for minimal implementation using [chess.js](https://github.com/jhlywa/chess.js/blob/master/README.md)
 
-Watch how a BOT communicates with the server https://tailuge.github.io/bot-o-tron/dist/testBot.html
+### Hosting
+
+If you register a free heroku account you can host a BOT like this one as is - just add your `API_TOKEN` to the environment property configuration. 
+This code auto deploys and is live at https://test-o-a.herokuapp.com/
+
+### Hostless
+ 
+You do not need to own a server to host a BOT, this code also runs in a browser. Watch how a BOT communicates with the server https://tailuge.github.io/bot-o-tron/dist/testBot.html
+
