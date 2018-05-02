@@ -1,6 +1,6 @@
 const ChessUtils = require("./ChessUtils");
 
-const chessUtils = new ChessUtils();
+const chess = new ChessUtils();
 
 /**
  * Pick a random legal move but prefer checks and mates.
@@ -8,9 +8,11 @@ const chessUtils = new ChessUtils();
 class LegalMovePlayer {
 
   getNextMove(moves) {
-    var legalMoves = chessUtils.legalMoves(moves);
-    var mates = legalMoves.filter(move => /\#/.test(move.san));
-    var checks = legalMoves.filter(move => /\+/.test(move.san));
+    chess.reset();
+    chess.applyMoves(moves);
+    const legalMoves = chess.legalMoves();
+    const mates = legalMoves.filter(move => /\#/.test(move.san));
+    const checks = legalMoves.filter(move => /\+/.test(move.san));
 
     if (mates.length) {
       return this.getRandomMove(mates);
@@ -30,7 +32,7 @@ class LegalMovePlayer {
   }
 
   getRandomMove(moves) {
-    return chessUtils.uci(moves[Math.floor(Math.random() * moves.length)]);
+    return chess.uci(moves[Math.floor(Math.random() * moves.length)]);
   }
 }
 

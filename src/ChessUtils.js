@@ -1,12 +1,22 @@
 const Chess = require("chess.js").Chess;
 
-const chess = new Chess();
-const allSquares = chess.SQUARES;
 
 /**
- * Utility functions for creating simple chess bots.
+ * Wraps chess.js with useful extras.
  */
 class ChessUtils {
+
+  constructor() {
+    this.chess = new Chess();
+  }
+
+  reset() {
+    this.chess.reset();
+  }
+
+  applyMoves(moves) {
+    moves.forEach(move => this.chess.move(move, { sloppy: true }));
+  }
 
   /**
    * Convert a chess.js move to a uci move
@@ -16,28 +26,45 @@ class ChessUtils {
   }
 
   /**
-   * Legal moves after array of uci moves played from initial position.
+   * Legal moves from current position.
    */
-  legalMoves(moves) {
-    chess.reset();
-    moves.forEach(move => chess.move(move, { sloppy: true }));
-    return chess.moves({ verbose: true });
+  legalMoves() {
+    return this.chess.moves({ verbose: true });
   }
 
-  squaresOfColour(fen, colour) {
-    var chess = new Chess(fen);
-    return allSquares.filter(square => {
-      var r = chess.get(square);
+  fen() {
+    return this.chess.fen();
+  }
+
+  move(move) {
+    this.chess.move(move);
+  }
+
+  undo() {
+    this.chess.undo();
+  }
+
+  turn() {
+    this.chess.turn();
+  }
+
+  squaresOf(colour) {
+    return this.chess.SQUARES.filter(square => {
+      const r = this.chess.get(square);
       return r && r.color === colour;
     });
   }
 
-  squareOfKing(fen, colour) {
-    return this.squaresOfPiece(fen, colour, "k");
+  squareOfKing() {
+    return this.squaresOfPiece(this.chess.turn(), "k");
   }
 
-  squaresOfPiece(fen, colour, pieceType) {
-    return this.squaresOfColour(fen, colour).find(square => chess.get(square).type.toLowerCase() === pieceType);
+  squareOfOpponentsKing() {
+    return this.squaresOfPiece(this.otherPlayer(this.chess.turn()), "k");
+  }
+
+  squaresOfPiece(colour, pieceType) {
+    return this.squaresOf(colour).find(square => this.chess.get(square).type.toLowerCase() === pieceType);
   }
 
   coordinates(square) {
@@ -48,6 +75,9 @@ class ChessUtils {
     return Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y));
   }
 
+  otherPlayer(colour) {
+    return colour === "w" ? "b" : "w";
+  }
 }
 
 module.exports = ChessUtils;
