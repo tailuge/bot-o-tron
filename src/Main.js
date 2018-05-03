@@ -32,4 +32,4 @@ const PORT = process.env.PORT || 5000;
 
 express()
   .get("/", (req, res) => res.send(`<h1>Challenge <a href="https://lichess.org/@/${robot.account.data.username}">${robot.account.data.username}</a> on lichess</h1>`))
-  .listen(PORT, () => console.log(`Keep alive server listening on ${PORT}`));
+  .listen(PORT, () => console.log(`Wake up server listening on ${PORT}`));

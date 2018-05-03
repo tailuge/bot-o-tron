@@ -46,7 +46,27 @@ test("coordinates", function(t) {
 test("distance", function(t) {
   const a1 = chess.coordinates("a1");
   const a8 = chess.coordinates("a8");
+  const b8 = chess.coordinates("b8");
   t.equal(chess.distance(a1,a1), 0, "0 distance same square");
   t.equal(chess.distance(a1,a8), 7, "7 distance between a1 a8");
+  t.equal(chess.distance(a1,b8), 7, "7 distance between a1 b8");
   t.end();
 });
+
+test("manhatanDistance", function(t) {
+  const a1 = chess.coordinates("a1");
+  const a8 = chess.coordinates("a8");
+  const b8 = chess.coordinates("b8");
+  t.equal(chess.manhatanDistance(a1,a1), 0, "0 manhatanDistance same square");
+  t.equal(chess.manhatanDistance(a1,a8), 7, "7 manhatanDistance between a1 a8");
+  t.equal(chess.manhatanDistance(a1,b8), 8, "8 manhatanDistance between a1 a8");
+  t.end();
+});
+
+test("otherPlayer", function(t) {
+  t.deepEqual(chess.otherPlayer("w"),"b", "w -> b");
+  t.deepEqual(chess.otherPlayer("b"),"w", "b -> w");
+  t.end();
+});
+
+

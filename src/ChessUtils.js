@@ -75,6 +75,10 @@ class ChessUtils {
     return Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y));
   }
 
+  manhatanDistance(a, b) {
+    return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+  }
+
   otherPlayer(colour) {
     return colour === "w" ? "b" : "w";
   }
