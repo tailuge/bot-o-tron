@@ -8,8 +8,8 @@ const chess = new ChessUtils();
 class SwarmKingPlayer {
 
   getNextMove(moves) {
-    chess.reset()
-    chess.applyMoves(moves)
+    chess.reset();
+    chess.applyMoves(moves);
     var legalMoves = chess.legalMoves();
     var mates = legalMoves.filter(move => /\#/.test(move.san));
 
@@ -24,7 +24,7 @@ class SwarmKingPlayer {
       // get distance to opponents king in all successor states
       legalMoves.forEach(m => {
         chess.move(m);
-        m.metric = this.distanceMetric(opponentsKingSquare, colour);
+        m.metric = this.distanceMetric(chess, opponentsKingSquare, colour);
         chess.undo();
       });
 
@@ -46,9 +46,9 @@ class SwarmKingPlayer {
   /**
    * Sum of (8-distance to king) for each piece of given colour.
    */
-  distanceMetric(square, colour) {
+  distanceMetric(c, square, colour) {
     const target = chess.coordinates(square);
-    const distances = chess.squaresOf(colour).map(square => 8 - chess.distance(target, chess.coordinates(square)));
+    const distances = c.squaresOf(colour).map(square => 8 - chess.distance(target, chess.coordinates(square)));
     return distances.reduce((a, b) => a + b, 0);
   }
 

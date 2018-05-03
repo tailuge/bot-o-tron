@@ -45,7 +45,7 @@ class ChessUtils {
   }
 
   turn() {
-    this.chess.turn();
+    return this.chess.turn();
   }
 
   squaresOf(colour) {
