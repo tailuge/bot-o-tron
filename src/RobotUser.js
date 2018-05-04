@@ -19,6 +19,7 @@ class RobotUser {
     this.account = await this.api.accountInfo();
     console.log("Playing as " + this.account.data.username);
     this.api.streamEvents((event) => this.eventHandler(event));
+    return this.account;
   }
 
   eventHandler(event) {
