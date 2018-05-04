@@ -1,5 +1,6 @@
 const RobotUser = require("./RobotUser");
 const LegalMovePlayer = require("./LegalMovePlayer");
+const SwarmKingPlayer = require("./SwarmKingPlayer");
 
 
 /**
@@ -16,13 +17,20 @@ const LegalMovePlayer = require("./LegalMovePlayer");
  * 
  */
 
-const token = process.env.API_TOKEN;
+var links = "<h1>Challenge:</h1><br/>";
 
-const player = new LegalMovePlayer();
-const robot = new RobotUser(token, player);
+links += start(process.env.API_TOKEN, new LegalMovePlayer());
+links += start(process.env.API_TOKEN_SWARM, new SwarmKingPlayer());
 
-robot.start();
+console.log(links);
 
+async function start(token, player) {
+  if (token) {
+    const robot = new RobotUser(token, player);
+    await robot.start();
+    return `<a href="https://lichess.org/@/${robot.account.data.username}">${robot.account.data.username}</a> on lichess.</h1><br/>`;
+  }
+}
 
 
 // heroku wakeup server (not necessary otherwise)
@@ -31,5 +39,5 @@ const express = require("express");
 const PORT = process.env.PORT || 5000;
 
 express()
-  .get("/", (req, res) => res.send(`<h1>Challenge <a href="https://lichess.org/@/${robot.account.data.username}">${robot.account.data.username}</a> on lichess</h1>`))
+  .get("/", (req, res) => res.send(links))
   .listen(PORT, () => console.log(`Wake up server listening on ${PORT}`));
