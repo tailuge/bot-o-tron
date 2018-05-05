@@ -5,7 +5,7 @@
   "main": "src/Main.js",
   "scripts": {
     "test": "nyc tap test/*",
-    "test-with-coverage": "nyc tap test/* | codacy-coverage",
+    "test-with-coverage": "tap --coverage-report=lcov test/* | codacy-coverage",
     "start": "node src/Main.js",
     "build": "webpack -p"
   },
