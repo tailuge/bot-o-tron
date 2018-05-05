@@ -16,19 +16,19 @@ class LegalMovePlayer {
     const captures = legalMoves.filter(move => /x/.test(move.san));
 
     if (mates.length) {
-      return this.getRandomMove(mates);
+      return chess.pickRandomMove(mates);
     }
 
     if (checks.length) {
-      return this.getRandomMove(checks);
+      return chess.pickRandomMove(checks);
     }
 
     if (captures.length) {
-      return this.getRandomMove(captures);
+      return chess.pickRandomMove(captures);
     }
 
     if (legalMoves.length) {
-      return this.getRandomMove(legalMoves);
+      return chess.pickRandomMove(legalMoves);
     }
   }
 
@@ -36,9 +36,6 @@ class LegalMovePlayer {
     return "hi";
   }
 
-  getRandomMove(moves) {
-    return chess.uci(moves[Math.floor(Math.random() * moves.length)]);
-  }
 }
 
 module.exports = LegalMovePlayer;

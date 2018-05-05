@@ -88,6 +88,10 @@ class ChessUtils {
   otherPlayer(colour) {
     return colour === "w" ? "b" : "w";
   }
+  
+  pickRandomMove(moves) {
+    return this.uci(moves[Math.floor(Math.random() * moves.length)]);
+  }
 }
 
 module.exports = ChessUtils;

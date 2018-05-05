@@ -15,11 +15,11 @@ class SwarmKingPlayer {
     const captures = legalMoves.filter(move => /x/.test(move.san));
 
     if (mates.length) {
-      return this.getRandomMove(mates);
+      return chess.pickRandomMove(mates);
     }
 
     if (captures.length) {
-      return this.getRandomMove(captures);
+      return chess.pickRandomMove(captures);
     }
 
     legalMoves = this.removeReverseMoves(moves, legalMoves);
@@ -62,9 +62,6 @@ class SwarmKingPlayer {
     return "swarm the king!";
   }
 
-  getRandomMove(moves) {
-    return chess.uci(moves[Math.floor(Math.random() * moves.length)]);
-  }
 }
 
 module.exports = SwarmKingPlayer;
