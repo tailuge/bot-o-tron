@@ -5,6 +5,7 @@
   "main": "src/Main.js",
   "scripts": {
     "test": "nyc tap test/*",
+    "test-with-coverage": "nyc tap test/* | codacy-coverage",
     "start": "node src/Main.js",
     "build": "webpack -p"
   },
@@ -22,6 +23,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "chess.js": "^0.10.2",
+    "codacy-coverage": "^3.0.0",
     "express": "^4.16.3",
     "oboe": "^2.1.4"
   }
