@@ -13,7 +13,7 @@ test("getReply", function(t) {
 test("getNextMove", function(t) {
   const mate = player.getNextMove(["e2e4", "a7a6", "f1c4", "a8a7", "d1h5", "a7a8"]);
   t.ok(mate === "h5f7" || mate === "c4f7", "mate is played when available");
-  t.equal(player.getNextMove(["e2e4","g8f6", "f2f4"]), "f6e4", "capture is played");
+  t.equal(player.getNextMove(["e2e4","a7a6","f1c4","a8a7"]), "c4f7", "check is played when available");
   t.ok(player.getNextMove([]), "a move is played when available");
   t.notOk(player.getNextMove(["e2e4", "a7a6", "f1c4", "a8a7", "d1h5", "a7a8", "c4f7"]), "no moves available");
   t.end();

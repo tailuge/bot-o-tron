@@ -3,7 +3,7 @@ const ChessUtils = require("./ChessUtils");
 const chess = new ChessUtils();
 
 /**
- * Move pieces closer to own king - mate and capture if possible.
+ * Move pieces closer to own king - mate and check if possible.
  */
 class SwarmKingPlayer {
 
@@ -11,15 +11,10 @@ class SwarmKingPlayer {
     chess.reset();
     chess.applyMoves(moves);
     var legalMoves = chess.legalMoves();
-    const mates = legalMoves.filter(move => /\#/.test(move.san));
-    const captures = legalMoves.filter(move => /x/.test(move.san));
+    const forcing = chess.filterForcing(legalMoves);
 
-    if (mates.length) {
-      return chess.pickRandomMove(mates);
-    }
-
-    if (captures.length) {
-      return chess.pickRandomMove(captures);
+    if (forcing.length) {
+      return chess.pickRandomMove(forcing);
     }
 
     legalMoves = this.removeReverseMoves(moves, legalMoves);

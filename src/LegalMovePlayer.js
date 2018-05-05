@@ -11,16 +11,11 @@ class LegalMovePlayer {
     chess.reset();
     chess.applyMoves(moves);
     const legalMoves = chess.legalMoves();
-    const mates = legalMoves.filter(move => /\#/.test(move.san));
-    const checks = legalMoves.filter(move => /\+/.test(move.san));
+    const forcing = chess.filterForcing(legalMoves);
     const captures = legalMoves.filter(move => /x/.test(move.san));
 
-    if (mates.length) {
-      return chess.pickRandomMove(mates);
-    }
-
-    if (checks.length) {
-      return chess.pickRandomMove(checks);
+    if (forcing.length) {
+      return chess.pickRandomMove(forcing);
     }
 
     if (captures.length) {

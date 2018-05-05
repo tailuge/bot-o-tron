@@ -88,10 +88,16 @@ class ChessUtils {
   otherPlayer(colour) {
     return colour === "w" ? "b" : "w";
   }
-  
+
   pickRandomMove(moves) {
     return this.uci(moves[Math.floor(Math.random() * moves.length)]);
   }
+
+  filterForcing(legalMoves) {
+    const mates = legalMoves.filter(move => /\#/.test(move.san));
+    return mates.length ? mates : legalMoves.filter(move => /\+/.test(move.san));
+  }
+
 }
 
 module.exports = ChessUtils;
