@@ -3,6 +3,10 @@ const test = require("tape");
 const ChessUtils = require("../src/ChessUtils");
 const chess = new ChessUtils();
 
+const a1 = chess.coordinates("a1");
+const a8 = chess.coordinates("a8");
+const b8 = chess.coordinates("b8");
+
 const initialPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 test("uci", function(t) {
@@ -44,9 +48,6 @@ test("coordinates", function(t) {
 });
 
 test("distance", function(t) {
-  const a1 = chess.coordinates("a1");
-  const a8 = chess.coordinates("a8");
-  const b8 = chess.coordinates("b8");
   t.equal(chess.distance(a1, a1), 0, "0 distance same square");
   t.equal(chess.distance(a1, a8), 7, "7 distance between a1 a8");
   t.equal(chess.distance(a1, b8), 7, "7 distance between a1 b8");
@@ -54,9 +55,6 @@ test("distance", function(t) {
 });
 
 test("manhattanDistance", function(t) {
-  const a1 = chess.coordinates("a1");
-  const a8 = chess.coordinates("a8");
-  const b8 = chess.coordinates("b8");
   t.equal(chess.manhattanDistance(a1, a1), 0, "0 manhattanDistance same square");
   t.equal(chess.manhattanDistance(a1, a8), 7, "7 manhattanDistance between a1 a8");
   t.equal(chess.manhattanDistance(a1, b8), 8, "8 manhattanDistance between a1 a8");
@@ -64,9 +62,6 @@ test("manhattanDistance", function(t) {
 });
 
 test("euclideanDistance", function(t) {
-  const a1 = chess.coordinates("a1");
-  const a8 = chess.coordinates("a8");
-  const b8 = chess.coordinates("b8");
   t.equal(chess.euclideanDistance(a1, a1), 0, "0 euclideanDistance same square");
   t.equal(chess.euclideanDistance(a1, a8), 7, "7 euclideanDistance between a1 a8");
   t.equal(chess.euclideanDistance(a1, b8), Math.sqrt(7 * 7 + 1), "7.071 euclideanDistance between a1 a8");
