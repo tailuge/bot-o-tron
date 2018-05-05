@@ -75,8 +75,14 @@ class ChessUtils {
     return Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y));
   }
 
-  manhatanDistance(a, b) {
+  manhattanDistance(a, b) {
     return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+  }
+
+  euclideanDistance(a, b) {
+    const dx = (a.x - b.x);
+    const dy = (a.y - b.y);
+    return Math.sqrt(dx * dx + dy * dy);
   }
 
   otherPlayer(colour) {

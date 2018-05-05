@@ -6,8 +6,8 @@ const chess = new ChessUtils();
 const initialPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
 test("uci", function(t) {
-  t.equal(chess.uci({from:"e2", to:"e4"}), "e2e4", "pawn to e4");
-  t.equal(chess.uci({from:"a7", to:"a8", flags:"p", piece:"q"}), "a7a8q", "promote to queen on a8");
+  t.equal(chess.uci({ from: "e2", to: "e4" }), "e2e4", "pawn to e4");
+  t.equal(chess.uci({ from: "a7", to: "a8", flags: "p", piece: "q" }), "a7a8q", "promote to queen on a8");
   t.end();
 });
 
@@ -39,7 +39,7 @@ test("squareOfKing", function(t) {
 });
 
 test("coordinates", function(t) {
-  t.deepEqual(chess.coordinates("a1"), {x:1,y:1}, "at at 1,1");
+  t.deepEqual(chess.coordinates("a1"), { x: 1, y: 1 }, "at at 1,1");
   t.end();
 });
 
@@ -47,26 +47,34 @@ test("distance", function(t) {
   const a1 = chess.coordinates("a1");
   const a8 = chess.coordinates("a8");
   const b8 = chess.coordinates("b8");
-  t.equal(chess.distance(a1,a1), 0, "0 distance same square");
-  t.equal(chess.distance(a1,a8), 7, "7 distance between a1 a8");
-  t.equal(chess.distance(a1,b8), 7, "7 distance between a1 b8");
+  t.equal(chess.distance(a1, a1), 0, "0 distance same square");
+  t.equal(chess.distance(a1, a8), 7, "7 distance between a1 a8");
+  t.equal(chess.distance(a1, b8), 7, "7 distance between a1 b8");
   t.end();
 });
 
-test("manhatanDistance", function(t) {
+test("manhattanDistance", function(t) {
   const a1 = chess.coordinates("a1");
   const a8 = chess.coordinates("a8");
   const b8 = chess.coordinates("b8");
-  t.equal(chess.manhatanDistance(a1,a1), 0, "0 manhatanDistance same square");
-  t.equal(chess.manhatanDistance(a1,a8), 7, "7 manhatanDistance between a1 a8");
-  t.equal(chess.manhatanDistance(a1,b8), 8, "8 manhatanDistance between a1 a8");
+  t.equal(chess.manhattanDistance(a1, a1), 0, "0 manhattanDistance same square");
+  t.equal(chess.manhattanDistance(a1, a8), 7, "7 manhattanDistance between a1 a8");
+  t.equal(chess.manhattanDistance(a1, b8), 8, "8 manhattanDistance between a1 a8");
+  t.end();
+});
+
+test("euclideanDistance", function(t) {
+  const a1 = chess.coordinates("a1");
+  const a8 = chess.coordinates("a8");
+  const b8 = chess.coordinates("b8");
+  t.equal(chess.euclideanDistance(a1, a1), 0, "0 euclideanDistance same square");
+  t.equal(chess.euclideanDistance(a1, a8), 7, "7 euclideanDistance between a1 a8");
+  t.equal(chess.euclideanDistance(a1, b8), Math.sqrt(7 * 7 + 1), "7.071 euclideanDistance between a1 a8");
   t.end();
 });
 
 test("otherPlayer", function(t) {
-  t.deepEqual(chess.otherPlayer("w"),"b", "w -> b");
-  t.deepEqual(chess.otherPlayer("b"),"w", "b -> w");
+  t.deepEqual(chess.otherPlayer("w"), "b", "w -> b");
+  t.deepEqual(chess.otherPlayer("b"), "w", "b -> w");
   t.end();
 });
-
-
