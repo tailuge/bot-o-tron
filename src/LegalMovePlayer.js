@@ -1,6 +1,5 @@
 const ChessUtils = require("./ChessUtils");
 
-const chess = new ChessUtils();
 
 /**
  * Pick a random legal move but prefer mates, checks and captures.
@@ -8,6 +7,7 @@ const chess = new ChessUtils();
 class LegalMovePlayer {
 
   getNextMove(moves) {
+    const chess = new ChessUtils();
     chess.reset();
     chess.applyMoves(moves);
     const legalMoves = chess.legalMoves();

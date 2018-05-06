@@ -1,6 +1,5 @@
 const ChessUtils = require("./ChessUtils");
 
-const chess = new ChessUtils();
 
 /**
  * Move pieces closer to own king - mate and check if possible.
@@ -8,6 +7,7 @@ const chess = new ChessUtils();
 class SwarmKingPlayer {
 
   getNextMove(moves) {
+const chess = new ChessUtils();
     chess.reset();
     chess.applyMoves(moves);
     var legalMoves = chess.legalMoves();
@@ -47,9 +47,9 @@ class SwarmKingPlayer {
   /**
    * Sum of (16 - manhattan distance to king) for each piece of given colour.
    */
-  distanceMetric(c, targetSquare, colour) {
+  distanceMetric(chess, targetSquare, colour) {
     const target = chess.coordinates(targetSquare);
-    const distances = c.squaresOf(colour).map(square => 16 - chess.manhattanDistance(target, chess.coordinates(square)));
+    const distances = chess.squaresOf(colour).map(square => 16 - chess.manhattanDistance(target, chess.coordinates(square)));
     return distances.reduce((a, b) => a + b, 0);
   }
 
