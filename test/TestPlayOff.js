@@ -8,8 +8,8 @@ const player2 = new LegalMovePlayer();
 
 test("playOff", function(t) {
   const playOff = new PlayOff(player1, player2);
-  t.equal(playOff.score(player1), 0, "score starts at 0");
-  t.equal(playOff.score(player2), 0, "score starts at 0");
+  t.equal(playOff.score(player1), 0.5, "score starts at 0.5");
+  t.equal(playOff.score(player2), 0.5, "score starts at 0.5");
   playOff.play(1);
   t.equal(playOff.score(player1), 0.5, "draw after 1 move each");
   t.equal(playOff.score(player2), 0.5, "draw after 1 move each");
@@ -18,6 +18,6 @@ test("playOff", function(t) {
 
 test("makeMove", function(t) {
   const playOff = new PlayOff(player1, player2);
-  t.equal(playOff.makeMove(player1,player2,[]), true, "move is played at start");
+  t.equal(playOff.makeMove(player1, player2, []), true, "move is played at start");
   t.end();
 });

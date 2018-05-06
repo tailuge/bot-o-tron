@@ -98,7 +98,7 @@ class ChessUtils {
     return mates.length ? mates : legalMoves.filter(move => /\+/.test(move.san));
   }
 
-  in_checkmate() {
+  inCheckmate() {
     return this.chess.in_checkmate();
   }
 
