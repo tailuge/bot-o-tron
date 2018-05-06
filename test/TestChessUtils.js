@@ -69,7 +69,19 @@ test("euclideanDistance", function(t) {
 });
 
 test("otherPlayer", function(t) {
-  t.deepEqual(chess.otherPlayer("w"), "b", "w -> b");
-  t.deepEqual(chess.otherPlayer("b"), "w", "b -> w");
+  t.equal(chess.otherPlayer("w"), "b", "w -> b");
+  t.equal(chess.otherPlayer("b"), "w", "b -> w");
+  t.end();
+});
+
+test("material", function(t) {
+  chess.reset();
+  t.equal(chess.material("w"), chess.material("b"), "material equal at start");
+  t.end();
+});
+
+test("materialEval", function(t) {
+  chess.reset();
+  t.equal(chess.materialEval(), 0, "eval 0 at start");
   t.end();
 });

@@ -98,6 +98,18 @@ class ChessUtils {
     return mates.length ? mates : legalMoves.filter(move => /\+/.test(move.san));
   }
 
+  in_checkmate() {
+    return this.chess.in_checkmate();
+  }
+
+  materialEval() {
+    return this.material("w") - this.material("b");
+  }
+
+  material(colour) {
+    return this.squaresOf(colour).map(square => 1).reduce((a, b) => a + b);
+  }
+
 }
 
 module.exports = ChessUtils;
