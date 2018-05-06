@@ -6,37 +6,37 @@ const ChessUtils = require("./ChessUtils");
  */
 class PlayOff {
 
-  constructor(player1, player2, moves) {
+  constructor(player1, player2, moves = []) {
     this.player1 = player1;
     this.player2 = player2;
-    this.moves = moves ? moves : [];
+    this.moves = moves;
     this.result = 0.5;
   }
 
   play(max) {
     while (this.moves.length < max) {
-      if (!this.makeMove(this.player1, this.player2)) {
+      if (!this.makeMove(this.player1)) {
         return;
       }
-      if (!this.makeMove(this.player2, this.player1)) {
+      if (!this.makeMove(this.player2)) {
         return;
       }
     }
-    this.scorePosition();
+    this.materialResult();
   }
 
-  makeMove(player, opponent) {
-    const move = this.player1.getNextMove(this.moves);
+  makeMove(player) {
+    const move = player.getNextMove(this.moves);
     if (!move) {
-      this.result = player === this.player1 ? 0 : 1;
+      this.setScore(player, 0);
       return false;
     }
     this.moves.push(move);
+    console.log(this.moves);
     const chess = new ChessUtils();
-    chess.reset();
     chess.applyMoves(this.moves);
     if (chess.inCheckmate()) {
-      this.result = player === this.player1 ? 1 : 0;
+      this.setScore(player, 1);
       return false;
     }
     return true;
@@ -46,9 +46,12 @@ class PlayOff {
     return player === this.player1 ? this.result : 1 - this.result;
   }
 
-  scorePosition() {
+  setScore(player, value) {
+    this.result = player === this.player1 ? value : 1 - value;
+  }
+
+  materialResult() {
     const chess = new ChessUtils();
-    chess.reset();
     chess.applyMoves(this.moves);
     const materialEval = chess.materialEval();
     if (Math.abs(materialEval) < 2) {
