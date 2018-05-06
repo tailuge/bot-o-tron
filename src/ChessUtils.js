@@ -102,6 +102,10 @@ class ChessUtils {
     return this.chess.in_checkmate();
   }
 
+  inStalemate() {
+    return this.chess.in_stalemate();
+  }
+
   materialEval() {
     return this.material("w") - this.material("b");
   }

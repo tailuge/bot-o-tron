@@ -15,10 +15,7 @@ class PlayOff {
 
   play(max) {
     while (this.moves.length < max) {
-      if (!this.makeMove(this.player1)) {
-        return;
-      }
-      if (!this.makeMove(this.player2)) {
+      if (!this.makeMove(this.moves.length % 2 === 0 ? this.player1 : this.player2)) {
         return;
       }
     }
@@ -26,17 +23,15 @@ class PlayOff {
   }
 
   makeMove(player) {
-    const move = player.getNextMove(this.moves);
-    if (!move) {
-      this.setScore(player, 0);
-      return false;
-    }
-    this.moves.push(move);
-    console.log(this.moves);
+    this.moves.push(player.getNextMove(this.moves));
     const chess = new ChessUtils();
     chess.applyMoves(this.moves);
     if (chess.inCheckmate()) {
       this.setScore(player, 1);
+      return false;
+    }
+    else if (chess.inStalemate()) {
+      this.setScore(player, 0.5);
       return false;
     }
     return true;
