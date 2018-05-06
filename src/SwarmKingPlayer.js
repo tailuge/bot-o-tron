@@ -21,11 +21,11 @@ class SwarmKingPlayer {
 
     if (legalMoves.length) {
       const colour = chess.turn();
-      const squareOfKing = chess.squareOfKing();
 
       // get distance to king in all successor states
       legalMoves.forEach(m => {
         chess.move(m);
+        const squareOfKing = chess.squareOfOpponentsKing();
         m.metric = this.distanceMetric(chess, squareOfKing, colour);
         chess.undo();
       });
