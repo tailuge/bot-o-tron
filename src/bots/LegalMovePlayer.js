@@ -8,7 +8,6 @@ class LegalMovePlayer {
 
   getNextMove(moves) {
     const chess = new ChessUtils();
-    chess.reset();
     chess.applyMoves(moves);
     const legalMoves = chess.legalMoves();
     const forcing = chess.filterForcing(legalMoves);

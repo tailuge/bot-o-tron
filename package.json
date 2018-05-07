@@ -7,6 +7,7 @@
     "test": "nyc tap test/*",
     "test-with-coverage": "tap --coverage-report=lcov test/* | codacy-coverage",
     "start": "node src/Main.js",
+    "tournament": "node src/tournament/Main.js",
     "build": "webpack -p"
   },
   "keywords": [],

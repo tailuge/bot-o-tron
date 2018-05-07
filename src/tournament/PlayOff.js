@@ -18,7 +18,7 @@ class PlayOff {
         return;
       }
     }
-    this.materialResult();
+    this.adjudicate();
   }
 
   makeMove(player) {
@@ -44,7 +44,7 @@ class PlayOff {
     this.result = player === this.player1 ? value : 1 - value;
   }
 
-  materialResult() {
+  adjudicate() {
     const chess = new ChessUtils();
     chess.applyMoves(this.moves);
     const materialEval = chess.materialEval();

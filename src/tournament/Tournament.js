@@ -3,20 +3,12 @@ const PlayOff = require("./PlayOff");
 /**
  * Play 
  */
-class Trournament {
+class Tournament {
 
-  constructor(players, rounds, maxMoves) {
+  constructor(players, maxMoves) {
     this.players = players;
-    this.rounds = rounds;
     this.maxMoves = maxMoves;
     this.scores = players.map(p => 0);
-  }
-
-  play() {
-    var round = 1;
-    while (round++ <= this.rounds) {
-      this.playRound();
-    }
   }
 
   playRound() {
@@ -35,4 +27,4 @@ class Trournament {
   }
 }
 
-module.exports = Trournament;
+module.exports = Tournament;

@@ -43,17 +43,17 @@ test("playOff white stalemate", function(t) {
   t.end();
 });
 
-test("materialResult for black", function(t) {
+test("adjudicate for black", function(t) {
   const playOff = new PlayOff(player1, player2, "e4 Nf6 Qh5 Nxh5".split(" "));
-  playOff.materialResult();
+  playOff.adjudicate();
   t.equal(playOff.score(player1), 0, "white down a queen");
   t.equal(playOff.score(player2), 1, "black up a queen");
   t.end();
 });
 
-test("materialResult for white", function(t) {
+test("adjudicate for white", function(t) {
   const playOff = new PlayOff(player1, player2, "d3 Nh6 Bxh6".split(" "));
-  playOff.materialResult();
+  playOff.adjudicate();
   t.equal(playOff.score(player1), 1, "white up a knight");
   t.equal(playOff.score(player2), 0, "black down a knight");
   t.end();

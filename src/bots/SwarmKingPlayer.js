@@ -7,8 +7,7 @@ const ChessUtils = require("../utils/ChessUtils");
 class SwarmKingPlayer {
 
   getNextMove(moves) {
-const chess = new ChessUtils();
-    chess.reset();
+    const chess = new ChessUtils();
     chess.applyMoves(moves);
     var legalMoves = chess.legalMoves();
     const forcing = chess.filterForcing(legalMoves);
