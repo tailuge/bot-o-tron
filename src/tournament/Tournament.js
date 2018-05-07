@@ -28,12 +28,16 @@ class Tournament {
 
   getRank() {
     return this.players
-      .map((p, i) => ({ player: this.playerName(p), score: this.scores[i] }))
+      .map(p => ({ player: this.playerName(p), score: this.playerScore(p) }))
       .sort((a, b) => a.score < b.score);
   }
 
   playerName(p) {
     return p.constructor.name.padEnd(20);
+  }
+
+  playerScore(p) {
+    return this.scores[this.players.indexOf(p)];
   }
 
 }
