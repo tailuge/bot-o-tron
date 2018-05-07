@@ -12,6 +12,10 @@ class LichessApi {
   constructor(token) {
     this.baseURL = "https://lichess.org/";
     this.headers = { "Authorization": `Bearer ${token}` };
+    this.axiosConfig = {
+      baseURL: this.baseURL,
+      headers: this.headers
+    };
   }
 
   acceptChallenge(challengeId) {
@@ -55,19 +59,15 @@ class LichessApi {
 
   get(URL) {
     console.log(`GET ${URL}`);
-    return axios.get(URL + "?v=" + Date.now(), {
-        baseURL: this.baseURL,
-        headers: this.headers
-      }).then(data => { console.log(JSON.stringify(data.data)); return data; })
+    return axios.get(URL + "?v=" + Date.now(), this.axiosConfig)
+      .then(data => { console.log(JSON.stringify(data.data)); return data; })
       .catch(err => console.log(err));
   }
 
   post(URL, body) {
     console.log(`POST ${URL} ` + JSON.stringify(body || {}));
-    return axios.post(URL, body || {}, {
-        baseURL: this.baseURL,
-        headers: this.headers
-      }).then(data => { console.log(JSON.stringify(data.data)); return data; })
+    return axios.post(URL, body || {}, this.axiosConfig)
+      .then(data => { console.log(JSON.stringify(data.data)); return data; })
       .catch(err => console.log(err.response.data));
   }
 

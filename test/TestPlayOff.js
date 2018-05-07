@@ -28,7 +28,7 @@ test("playOff white win", function(t) {
 const stalemate = "e3 a5 Qh5 Ra6 Qxa5 h5 h4 Rah6 Qxc7 f6 Qxd7+ Kf7 Qxb7 Qd3 Qxb8 Qh7 Qxc8".split(" ");
 
 test("playOff white stalemate", function(t) {
-  const playOff = new PlayOff({ getNextMove() { return "Qe6" } }, { getNextMove() { return "Kg6" } }, stalemate);
+  const playOff = new PlayOff({ getNextMove() { return "Qe6"; } }, { getNextMove() { return "Kg6"; } }, stalemate);
   playOff.play(20);
   t.equal(playOff.score(player1), 0.5, "white played stalemate");
   t.end();
