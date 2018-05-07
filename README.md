@@ -53,7 +53,7 @@ You do not need to own a server to host a BOT, this code also runs in a browser.
 
 ### Tounaments
 
-Compare bots locally - and the winner of the 16 round tournament is...
+Compare bots locally - and the winner of the 16 x round-robin tournament is...
 
 ```bash
 $ yarn tournament
