@@ -4,7 +4,7 @@ const ChessUtils = require("../utils/ChessUtils");
 /**
  * Pick a random legal move but prefer mates, checks and captures.
  */
-class LegalMovePlayer {
+class PatzerPlayer {
 
   getNextMove(moves) {
     const chess = new ChessUtils();
@@ -32,4 +32,4 @@ class LegalMovePlayer {
 
 }
 
-module.exports = LegalMovePlayer;
+module.exports = PatzerPlayer;

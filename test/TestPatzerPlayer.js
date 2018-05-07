@@ -1,5 +1,5 @@
 const test = require("tape");
-const LegalMovePlayer = require("../src/bots/LegalMovePlayer");
+const LegalMovePlayer = require("../src/bots/PatzerPlayer");
 
 const player = new LegalMovePlayer();
 

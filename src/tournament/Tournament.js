@@ -25,6 +25,13 @@ class Tournament {
   getScores() {
     return this.scores;
   }
+
+  getRank() {
+    return this.players
+      .map((p, i) => ({ player: p.constructor.name.padEnd(20), score: this.scores[i] }))
+      .sort((a, b) => a.score < b.score);
+  }
+
 }
 
 module.exports = Tournament;

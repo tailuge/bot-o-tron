@@ -11,5 +11,6 @@ test("Tournament starts at zero", function(t) {
   t.deepEqual(tournament.getScores(), [0, 0], "scores starts at [0,0]");
   tournament.playRound();
   t.deepEqual(tournament.getScores(), [1, 1], "scores after 2 rounds of draws is [1,1]");
+  t.equal(tournament.getRank().length, 2, "two players ranked");
   t.end();
 });

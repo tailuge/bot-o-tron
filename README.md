@@ -40,7 +40,7 @@ To implement your chess bot you only need to create one class that implements th
 
 Where moves is a string of moves so far in uci format e.g. `"e2e4 b8c6 f2f4"`
 
-See [`LegalMovePlayer`](src/bots/LegalMovePlayer.js) for minimal implementation using [chess.js](https://github.com/jhlywa/chess.js/blob/master/README.md)
+See [`LegalMovePlayer`](src/bots/RandomPlayer.js) for minimal implementation using [chess.js](https://github.com/jhlywa/chess.js/blob/master/README.md)
 
 ### Hosting
 
@@ -51,3 +51,15 @@ This code auto deploys and is live at https://test-o-a.herokuapp.com/
  
 You do not need to own a server to host a BOT, this code also runs in a browser. Watch how a BOT communicates with the server https://tailuge.github.io/bot-o-tron/dist/testBot.html
 
+### Tounaments
+
+Compare bots locally - and the winner of the 16 round tournament is...
+
+```bash
+$ yarn tournament
+
+Results
+[ { player: 'PatzerPlayer        ', score: 41.5 },
+  { player: 'RandomPlayer        ', score: 28 },
+  { player: 'SwarmKingPlayer     ', score: 26.5 } ]
+```

@@ -1,10 +1,10 @@
 const test = require("tape");
 
 const PlayOff = require("../src/tournament/PlayOff");
-const LegalMovePlayer = require("../src/bots/LegalMovePlayer");
+const PatzerPlayer = require("../src/bots/PatzerPlayer");
 
-const player1 = new LegalMovePlayer();
-const player2 = new LegalMovePlayer();
+const player1 = new PatzerPlayer();
+const player2 = new PatzerPlayer();
 
 test("playOff draw", function(t) {
   const playOff = new PlayOff(player1, player2);

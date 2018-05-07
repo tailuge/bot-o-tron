@@ -1,5 +1,5 @@
 const RobotUser = require("./RobotUser");
-const LegalMovePlayer = require("./bots/LegalMovePlayer");
+const PatzerPlayer = require("./bots/PatzerPlayer");
 const SwarmKingPlayer = require("./bots/SwarmKingPlayer");
 
 
@@ -29,7 +29,7 @@ async function startBot(token, player) {
 async function begin() {
   var links = "<h1>Challenge:</h1><br/>";
 
-  links += await startBot(process.env.API_TOKEN, new LegalMovePlayer());
+  links += await startBot(process.env.API_TOKEN, new PatzerPlayer());
   links += await startBot(process.env.API_TOKEN_SWARM, new SwarmKingPlayer());
 
   // heroku wakeup server (not necessary otherwise)
