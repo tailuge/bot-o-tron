@@ -1,4 +1,4 @@
-const ChessUtils = require("./ChessUtils");
+const ChessUtils = require("../utils/ChessUtils");
 
 
 /**

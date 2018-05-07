@@ -1,6 +1,6 @@
 const test = require("tape");
-const SwarmKingPlayer = require("../src/SwarmKingPlayer");
-const ChessUtils = require("../src/ChessUtils");
+const SwarmKingPlayer = require("../src/bots/SwarmKingPlayer");
+const ChessUtils = require("../src/utils/ChessUtils");
 
 const player = new SwarmKingPlayer();
 const chess = new ChessUtils();

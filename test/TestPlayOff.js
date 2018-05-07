@@ -1,7 +1,7 @@
 const test = require("tape");
 
-const PlayOff = require("../src/PlayOff");
-const LegalMovePlayer = require("../src/LegalMovePlayer");
+const PlayOff = require("../src/tournament/PlayOff");
+const LegalMovePlayer = require("../src/bots/LegalMovePlayer");
 
 const player1 = new LegalMovePlayer();
 const player2 = new LegalMovePlayer();
@@ -23,6 +23,15 @@ test("playOff white win", function(t) {
   t.equal(playOff.score(player2), 0, "black loss checkmate");
   t.end();
 });
+
+test("playOff black win", function(t) {
+  const playOff = new PlayOff(player1, player2, "e4 e5 Na3 Qh4 b3 Bc5 Bc4".split(" "));
+  playOff.play(9);
+  t.equal(playOff.score(player1), 0, "white lose checkmate");
+  t.equal(playOff.score(player2), 1, "black win checkmate");
+  t.end();
+});
+
 
 
 const stalemate = "e3 a5 Qh5 Ra6 Qxa5 h5 h4 Rah6 Qxc7 f6 Qxd7+ Kf7 Qxb7 Qd3 Qxb8 Qh7 Qxc8".split(" ");

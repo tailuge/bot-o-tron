@@ -1,6 +1,6 @@
 const RobotUser = require("./RobotUser");
-const LegalMovePlayer = require("./LegalMovePlayer");
-const SwarmKingPlayer = require("./SwarmKingPlayer");
+const LegalMovePlayer = require("./bots/LegalMovePlayer");
+const SwarmKingPlayer = require("./bots/SwarmKingPlayer");
 
 
 /**

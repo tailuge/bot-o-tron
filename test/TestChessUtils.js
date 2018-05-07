@@ -1,6 +1,6 @@
 const test = require("tape");
 
-const ChessUtils = require("../src/ChessUtils");
+const ChessUtils = require("../src/utils/ChessUtils");
 const chess = new ChessUtils();
 
 const a1 = chess.coordinates("a1");

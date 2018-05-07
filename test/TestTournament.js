@@ -1,7 +1,7 @@
 const test = require("tape");
 
-const Tournament = require("../src/Tournament");
-const LegalMovePlayer = require("../src/LegalMovePlayer");
+const Tournament = require("../src/tournament/Tournament");
+const LegalMovePlayer = require("../src/bots/LegalMovePlayer");
 
 const player1 = new LegalMovePlayer();
 const player2 = new LegalMovePlayer();
