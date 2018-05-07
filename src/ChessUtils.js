@@ -111,7 +111,7 @@ class ChessUtils {
   }
 
   material(colour) {
-    const valueOf = { 'p': 1, 'n': 3, 'b': 3, 'r': 6, 'q': 9, 'k': 0 };
+    const valueOf = { p: 1, n: 3, b: 3, r: 6, q: 9, k: 0 };
     return this.squaresOf(colour).map(square => valueOf[this.chess.get(square).type]).reduce((a, b) => a + b);
   }
 
