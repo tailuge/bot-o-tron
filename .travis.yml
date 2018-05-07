@@ -5,3 +5,4 @@ before_script:
 after_success:
   - nyc report --reporter=text-lcov | coveralls
   - nyc report --reporter=text-lcov | codacy-coverage
+

@@ -38,9 +38,9 @@ To implement your chess bot you only need to create one class that implements th
   }
 ```
 
-Where moves is a string of moves so far in uci format e.g. `"e2e4 b8c6 f2f4"`
+Where moves is a list of moves so far in uci format e.g. `["e2e4", "b8c6", "f2f4"]`
 
-See [`LegalMovePlayer`](src/bots/RandomPlayer.js) for minimal implementation using [chess.js](https://github.com/jhlywa/chess.js/blob/master/README.md)
+See [`RandomPlayer`](src/bots/RandomPlayer.js) for minimal implementation using [chess.js](https://github.com/jhlywa/chess.js/blob/master/README.md)
 
 ### Hosting
 
