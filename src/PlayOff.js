@@ -1,8 +1,7 @@
 const ChessUtils = require("./ChessUtils");
 
-
 /**
- * Pick a random legal move but prefer mates, checks and captures.
+ * Play off two players and capture result after maximum number of moves.
  */
 class PlayOff {
 
