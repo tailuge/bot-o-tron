@@ -1,7 +1,7 @@
 const test = require("tape");
-const LegalMovePlayer = require("../src/bots/PatzerPlayer");
+const PatzerPlayer = require("../src/bots/PatzerPlayer");
 
-const player = new LegalMovePlayer();
+const player = new PatzerPlayer();
 
 test("getReply", function(t) {
   t.equal(player.getReply({}), "hi", "chat says hi");
