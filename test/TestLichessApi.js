@@ -42,6 +42,26 @@ const accountResponse = {
   }
 };
 
+function assertRequest(t, method, pathregexp, response) {
+  moxios.wait(function() {
+    let request = moxios.requests.mostRecent();
+    t.equal(request.config.method, method, "correct method");
+    t.ok(pathregexp.test(request.config.url), "correct path");
+    t.equal(request.headers.Authorization, "Bearer " + secret, "credentials are correct");
+    request.respondWith(response);
+  });
+}
+
+function httpTest(title, ftest) {
+  tap.test(title, function(t) {
+    moxios.install();
+    moxios.withMock(async function() {
+      ftest(t);
+    });
+    moxios.uninstall();
+  });
+}
+
 tap.test("accountInfo", function(t) {
 
   moxios.install();
@@ -68,7 +88,7 @@ tap.test("accountInfo", function(t) {
 const challengeId = "abc123";
 
 httpTest("acceptChallenge", async function(t) {
-  assertRequest(t, "post", new RegExp(`api/challenge/${challengeId}/accept`), {
+  assertRequest(t, "post", new RegExp("api/challenge/" + challengeId + "/accept"), {
     status: 200,
     response: { "ok": true }
   });
@@ -78,7 +98,7 @@ httpTest("acceptChallenge", async function(t) {
 });
 
 httpTest("declineChallenge", async function(t) {
-  assertRequest(t, "post", new RegExp(`api/challenge/${challengeId}/decline`), {
+  assertRequest(t, "post", new RegExp("api/challenge/" + challengeId + "/decline"), {
     status: 200,
     response: { "ok": true }
   });
@@ -86,24 +106,3 @@ httpTest("declineChallenge", async function(t) {
   t.equal(response.data.ok, true, "response correct");
   t.end();
 });
-
-
-function httpTest(title, ftest) {
-  tap.test(title, function(t) {
-    moxios.install();
-    moxios.withMock(async function() {
-      ftest(t);
-    });
-    moxios.uninstall();
-  });
-}
-
-function assertRequest(t, method, pathregexp, response) {
-  moxios.wait(function() {
-    let request = moxios.requests.mostRecent();
-    t.equal(request.config.method, method, "correct method");
-    t.ok(pathregexp.test(request.config.url), "correct path");
-    t.equal(request.headers.Authorization, "Bearer " + secret, "credentials are correct");
-    request.respondWith(response);
-  });
-}
