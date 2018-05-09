@@ -60,7 +60,7 @@ class Game {
   }
 
   playingAs(event) {
-    return (event.white.id === this.name) ? "white" : "black";
+    return (event.name.id === this.name) ? "white" : "black";
   }
 
   isTurn(colour, moves) {
