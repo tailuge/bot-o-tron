@@ -88,7 +88,7 @@ tap.test("accountInfo", function(t) {
 const challengeId = "abc123";
 
 httpTest("acceptChallenge", async function(t) {
-  assertRequest(t, "post", new RegExp("api/challenge/" + challengeId + "/accept"), {
+  assertRequest(t, "post", new RegExp(`api/challenge/${challengeId}/accept`), {
     status: 200,
     response: { "ok": true }
   });
@@ -98,7 +98,7 @@ httpTest("acceptChallenge", async function(t) {
 });
 
 httpTest("declineChallenge", async function(t) {
-  assertRequest(t, "post", new RegExp("api/challenge/" + challengeId + "/decline"), {
+  assertRequest(t, "post", new RegExp(`api/challenge/${challengeId}/decline`), {
     status: 200,
     response: { "ok": true }
   });
@@ -106,3 +106,5 @@ httpTest("declineChallenge", async function(t) {
   t.equal(response.data.ok, true, "response correct");
   t.end();
 });
+
+
