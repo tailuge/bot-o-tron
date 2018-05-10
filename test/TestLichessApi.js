@@ -1,52 +1,19 @@
 const tap = require("tap");
 const moxios = require("moxios");
+const nock = require('nock');
+const sinon = require('sinon');
+const ndjson = require('ndjson');
 const LichessApi = require("../src/LichessApi");
 
 const gameId = "gid001";
 const challengeId = "cid001";
 const secret = "secret api token";
+const accountResponse = { status: 200, response: { "id": "bot-o-tron", "username": "bot-o-tron", } };
+const okResponse = { status: 200, response: { "ok": true } };
+const eventResponse = { id: '1', type: 'event' };
+const gameEventResponse = { id: '2', type: 'move' };
+
 const api = new LichessApi(secret);
-
-const accountResponse = {
-  status: 200,
-  response: {
-    "id": "bot-o-tron",
-    "username": "bot-o-tron",
-    "online": false,
-    "perfs": {
-      "blitz": { "games": 0, "rating": 1500, "rd": 350, "prog": 0, "prov": true },
-      "bullet": { "games": 0, "rating": 1500, "rd": 350, "prog": 0, "prov": true },
-      "correspondence": { "games": 0, "rating": 1500, "rd": 350, "prog": 0, "prov": true },
-      "classical": { "games": 0, "rating": 1500, "rd": 350, "prog": 0, "prov": true },
-      "rapid": { "games": 0, "rating": 1500, "rd": 350, "prog": 0, "prov": true }
-    },
-    "createdAt": 1523969032456,
-    "profile": {
-      "country": "GB",
-      "location": "Cloud",
-      "bio": "I only accept unrated challenges",
-      "firstName": "bot",
-      "lastName": "o-tron",
-      "links": ""
-    },
-    "seenAt": 1525437350441,
-    "playTime": { "total": 15530, "tv": 523 },
-    "title": "BOT",
-    "url": "https://lichess.org/@/bot-o-tron",
-    "nbFollowing": 2,
-    "nbFollowers": 25,
-    "count": { "all": 236, "rated": 0, "ai": 0, "draw": 13, "drawH": 13, "loss": 150, "lossH": 150, "win": 73, "winH": 73, "bookmark": 0, "playing": 0, "import": 0, "me": 0 },
-    "followable": true,
-    "following": false,
-    "blocking": false,
-    "followsYou": false
-  }
-};
-
-const okResponse = {
-  status: 200,
-  response: { "ok": true }
-};
 
 function assertRequest(t, method, pathregexp, response) {
   moxios.wait(function() {
@@ -66,6 +33,32 @@ tap.beforeEach(function(t) {
 tap.afterEach(function(t) {
   moxios.uninstall();
   t();
+});
+
+
+
+// experimental stream mocks (WIP)
+
+tap.test("streamEvents", async function(t) {
+  const serialize = ndjson.serialize();
+  const serialize2 = ndjson.serialize();
+  var server = nock('https://lichess.org')
+    .get('/api/stream/event')
+    .reply(function(uri, requestBody) { return serialize })
+    .get(`/api/bot/game/stream/${gameId}`)
+    .reply(function(uri, requestBody) { return serialize2 });
+  const callback = sinon.fake();
+  const callback2 = sinon.fake();
+  serialize.write(eventResponse);
+  serialize2.write(gameEventResponse);
+  await api.streamEvents(callback);
+  await api.streamGame(gameId, callback2);
+  await t.ok(callback.calledOnce, "callback called once");
+  //  await t.ok(callback2.calledOnce, "callback2 called once");
+  await server.isDone();
+  console.log("callcount=" + callback.callCount);
+  console.log("callcount2=" + callback2.callCount);
+  t.end();
 });
 
 tap.test("acceptChallenge", async function(t) {
