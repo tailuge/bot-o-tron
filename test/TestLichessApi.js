@@ -1,12 +1,11 @@
 const tap = require("tap");
 const moxios = require("moxios");
-
 const LichessApi = require("../src/LichessApi");
 
+const gameId = "gid001";
+const challengeId = "cid001";
 const secret = "secret api token";
 const api = new LichessApi(secret);
-
-const challengeId = "abc123";
 
 const accountResponse = {
   status: 200,
@@ -44,6 +43,11 @@ const accountResponse = {
   }
 };
 
+const okResponse = {
+  status: 200,
+  response: { "ok": true }
+};
+
 function assertRequest(t, method, pathregexp, response) {
   moxios.wait(function() {
     let request = moxios.requests.mostRecent();
@@ -64,34 +68,22 @@ tap.afterEach(function(t) {
   t();
 });
 
-
-
-
 tap.test("acceptChallenge", async function(t) {
-  assertRequest(t, "post", new RegExp(`api/challenge/${challengeId}/accept`), {
-    status: 200,
-    response: { "ok": true }
-  });
+  assertRequest(t, "post", new RegExp(`api/challenge/${challengeId}/accept`), okResponse);
   const response = await api.acceptChallenge(challengeId);
   t.equal(response.data.ok, true, "response correct");
   t.end();
 });
 
 tap.test("declineChallenge", async function(t) {
-  assertRequest(t, "post", new RegExp(`api/challenge/${challengeId}/decline`), {
-    status: 200,
-    response: { "ok": true }
-  });
+  assertRequest(t, "post", new RegExp(`api/challenge/${challengeId}/decline`), okResponse);
   const response = await api.declineChallenge(challengeId);
   t.equal(response.data.ok, true, "response correct");
   t.end();
 });
 
 tap.test("upgrade", async function(t) {
-  assertRequest(t, "post", new RegExp("api/bot/accounts/upgrade"), {
-    status: 200,
-    response: { "ok": true }
-  });
+  assertRequest(t, "post", new RegExp("api/bot/accounts/upgrade"), okResponse);
   const response = await api.upgrade();
   t.equal(response.data.ok, true, "response correct");
   t.end();
@@ -105,46 +97,30 @@ tap.test("accountInfo", async function(t) {
 });
 
 tap.test("makeMove", async function(t) {
-  const gameId="g123";
-  const move="e2e4";
-  assertRequest(t, "post", new RegExp(`api/bot/game/${gameId}/move/${move}`), {
-    status: 200,
-    response: { "ok": true }
-  });
-  const response = await api.makeMove(gameId,move);
+  const move = "e2e4";
+  assertRequest(t, "post", new RegExp(`api/bot/game/${gameId}/move/${move}`), okResponse);
+  const response = await api.makeMove(gameId, move);
   t.equal(response.data.ok, true, "response correct");
   t.end();
 });
 
 tap.test("abortGame", async function(t) {
-  const gameId="g123";
-  assertRequest(t, "post", new RegExp(`api/bot/game/${gameId}/abort`), {
-    status: 200,
-    response: { "ok": true }
-  });
+  assertRequest(t, "post", new RegExp(`api/bot/game/${gameId}/abort`), okResponse);
   const response = await api.abortGame(gameId);
   t.equal(response.data.ok, true, "response correct");
   t.end();
 });
 
 tap.test("resignGame", async function(t) {
-  const gameId="g123";
-  assertRequest(t, "post", new RegExp(`api/bot/game/${gameId}/resign`), {
-    status: 200,
-    response: { "ok": true }
-  });
+  assertRequest(t, "post", new RegExp(`api/bot/game/${gameId}/resign`), okResponse);
   const response = await api.resignGame(gameId);
   t.equal(response.data.ok, true, "response correct");
   t.end();
 });
 
 tap.test("chat", async function(t) {
-  const gameId="g123";
-  assertRequest(t, "post", new RegExp(`api/bot/game/${gameId}/chat`), {
-    status: 200,
-    response: { "ok": true }
-  });
-  const response = await api.chat(gameId,"lobby","hi");
+  assertRequest(t, "post", new RegExp(`api/bot/game/${gameId}/chat`), okResponse);
+  const response = await api.chat(gameId, "lobby", "hi");
   t.equal(response.data.ok, true, "response correct");
   t.end();
 });
