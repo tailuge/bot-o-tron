@@ -6,6 +6,8 @@ const LichessApi = require("../src/LichessApi");
 const secret = "secret api token";
 const api = new LichessApi(secret);
 
+const challengeId = "abc123";
+
 const accountResponse = {
   status: 200,
   response: {
@@ -52,42 +54,26 @@ function assertRequest(t, method, pathregexp, response) {
   });
 }
 
-function httpTest(title, ftest) {
-  tap.test(title, function(t) {
-    moxios.install();
-    moxios.withMock(async function() {
-      ftest(t);
-    });
-    moxios.uninstall();
-  });
-}
-
-tap.test("accountInfo", function(t) {
-
+tap.beforeEach(function(t) {
   moxios.install();
-  moxios.withMock(async function() {
-
-    moxios.wait(function() {
-      let request = moxios.requests.mostRecent();
-      t.equal(request.config.method, "get", "correct method");
-      t.ok(/.*api\/account.*/.test(request.config.url), "correct path");
-      t.equal(request.headers.Authorization, "Bearer " + secret, "credentials are correct");
-      request.respondWith(accountResponse);
-    });
-
-    const response = await api.accountInfo();
-    t.equal(response.data.id, "bot-o-tron", "user id returned");
-    t.end();
-
-  });
-
-  moxios.uninstall();
-
+  t();
 });
 
-const challengeId = "abc123";
+tap.afterEach(function(t) {
+  moxios.uninstall();
+  t();
+});
 
-httpTest("acceptChallenge", async function(t) {
+
+
+tap.test("accountInfo", async function(t) {
+  assertRequest(t, "get", new RegExp("api/account"), accountResponse);
+  const response = await api.accountInfo();
+  t.equal(response.data.id, "bot-o-tron", "user id returned");
+  t.end();
+});
+
+tap.test("acceptChallenge", async function(t) {
   assertRequest(t, "post", new RegExp(`api/challenge/${challengeId}/accept`), {
     status: 200,
     response: { "ok": true }
@@ -97,7 +83,7 @@ httpTest("acceptChallenge", async function(t) {
   t.end();
 });
 
-httpTest("declineChallenge", async function(t) {
+tap.test("declineChallenge", async function(t) {
   assertRequest(t, "post", new RegExp(`api/challenge/${challengeId}/decline`), {
     status: 200,
     response: { "ok": true }
@@ -106,5 +92,3 @@ httpTest("declineChallenge", async function(t) {
   t.equal(response.data.ok, true, "response correct");
   t.end();
 });
-
-
