@@ -1,8 +1,8 @@
 const tap = require("tap");
 const moxios = require("moxios");
-const nock = require('nock');
-const sinon = require('sinon');
-const ndjson = require('ndjson');
+const nock = require("nock");
+const sinon = require("sinon");
+const ndjson = require("ndjson");
 const LichessApi = require("../src/LichessApi");
 
 const gameId = "gid001";
@@ -10,8 +10,8 @@ const challengeId = "cid001";
 const secret = "secret api token";
 const accountResponse = { status: 200, response: { "id": "bot-o-tron", "username": "bot-o-tron", } };
 const okResponse = { status: 200, response: { "ok": true } };
-const eventResponse = { id: '1', type: 'event' };
-const gameEventResponse = { id: '2', type: 'move' };
+const eventResponse = { id: "1", type: "event" };
+const gameEventResponse = { id: "2", type: "move" };
 
 const api = new LichessApi(secret);
 
@@ -42,11 +42,11 @@ tap.afterEach(function(t) {
 tap.test("streamEvents", async function(t) {
   const serialize = ndjson.serialize();
   const serialize2 = ndjson.serialize();
-  var server = nock('https://lichess.org')
-    .get('/api/stream/event')
-    .reply(function(uri, requestBody) { return serialize })
+  var server = nock("https://lichess.org")
+    .get("/api/stream/event")
+    .reply(function(uri, requestBody) { return serialize; })
     .get(`/api/bot/game/stream/${gameId}`)
-    .reply(function(uri, requestBody) { return serialize2 });
+    .reply(function(uri, requestBody) { return serialize2; });
   const callback = sinon.fake();
   const callback2 = sinon.fake();
   serialize.write(eventResponse);
