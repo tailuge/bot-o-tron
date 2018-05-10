@@ -42,6 +42,10 @@ class LichessApi {
     return this.post(`api/bot/game/${gameId}/abort`);
   }
 
+  resignGame(gameId) {
+    return this.post(`api/bot/game/${gameId}/resign`);
+  }
+
   streamEvents(handler) {
     return this.stream("api/stream/event", handler);
   }

@@ -66,12 +66,6 @@ tap.afterEach(function(t) {
 
 
 
-tap.test("accountInfo", async function(t) {
-  assertRequest(t, "get", new RegExp("api/account"), accountResponse);
-  const response = await api.accountInfo();
-  t.equal(response.data.id, "bot-o-tron", "user id returned");
-  t.end();
-});
 
 tap.test("acceptChallenge", async function(t) {
   assertRequest(t, "post", new RegExp(`api/challenge/${challengeId}/accept`), {
@@ -89,6 +83,68 @@ tap.test("declineChallenge", async function(t) {
     response: { "ok": true }
   });
   const response = await api.declineChallenge(challengeId);
+  t.equal(response.data.ok, true, "response correct");
+  t.end();
+});
+
+tap.test("upgrade", async function(t) {
+  assertRequest(t, "post", new RegExp("api/bot/accounts/upgrade"), {
+    status: 200,
+    response: { "ok": true }
+  });
+  const response = await api.upgrade();
+  t.equal(response.data.ok, true, "response correct");
+  t.end();
+});
+
+tap.test("accountInfo", async function(t) {
+  assertRequest(t, "get", new RegExp("api/account"), accountResponse);
+  const response = await api.accountInfo();
+  t.equal(response.data.id, "bot-o-tron", "user id returned");
+  t.end();
+});
+
+tap.test("makeMove", async function(t) {
+  const gameId="g123";
+  const move="e2e4";
+  assertRequest(t, "post", new RegExp(`api/bot/game/${gameId}/move/${move}`), {
+    status: 200,
+    response: { "ok": true }
+  });
+  const response = await api.makeMove(gameId,move);
+  t.equal(response.data.ok, true, "response correct");
+  t.end();
+});
+
+tap.test("abortGame", async function(t) {
+  const gameId="g123";
+  assertRequest(t, "post", new RegExp(`api/bot/game/${gameId}/abort`), {
+    status: 200,
+    response: { "ok": true }
+  });
+  const response = await api.abortGame(gameId);
+  t.equal(response.data.ok, true, "response correct");
+  t.end();
+});
+
+tap.test("resignGame", async function(t) {
+  const gameId="g123";
+  assertRequest(t, "post", new RegExp(`api/bot/game/${gameId}/resign`), {
+    status: 200,
+    response: { "ok": true }
+  });
+  const response = await api.resignGame(gameId);
+  t.equal(response.data.ok, true, "response correct");
+  t.end();
+});
+
+tap.test("chat", async function(t) {
+  const gameId="g123";
+  assertRequest(t, "post", new RegExp(`api/bot/game/${gameId}/chat`), {
+    status: 200,
+    response: { "ok": true }
+  });
+  const response = await api.chat(gameId,"lobby","hi");
   t.equal(response.data.ok, true, "response correct");
   t.end();
 });
