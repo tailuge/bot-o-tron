@@ -1,7 +1,6 @@
 const tap = require("tap");
 const moxios = require("moxios");
 const nock = require("nock");
-const sinon = require("sinon");
 const ndjson = require("ndjson");
 const LichessApi = require("../src/LichessApi");
 
@@ -35,29 +34,37 @@ tap.afterEach(function(t) {
   t();
 });
 
-
-
-// experimental stream mocks (WIP)
-
-tap.test("streamEvents", async function(t) {
+tap.test("streamEvents", function(t) {
   const serialize = ndjson.serialize();
-  const serialize2 = ndjson.serialize();
-  var server = nock("https://lichess.org")
+  nock("https://lichess.org")
     .get("/api/stream/event")
-    .reply(function(uri, requestBody) { return serialize; })
-    .get(`/api/bot/game/stream/${gameId}`)
-    .reply(function(uri, requestBody) { return serialize2; });
-  const callback = sinon.fake();
-  const callback2 = sinon.fake();
+    .reply((uri, requestBody) => serialize);
   serialize.write(eventResponse);
-  serialize2.write(gameEventResponse);
-  await api.streamEvents(callback);
-  await api.streamGame(gameId, callback2);
-  await t.ok(callback.calledOnce, "callback called once");
-  //  await t.ok(callback2.calledOnce, "callback2 called once");
-  await server.isDone();
-  console.log("callcount=" + callback.callCount);
-  console.log("callcount2=" + callback2.callCount);
+  api.streamEvents(x => {
+    console.log("Callback");
+    t.ok(true, "callback called");
+    t.end();
+  });
+});
+
+tap.test("streamEventsEnd", function(t) {
+  t.end();
+});
+
+tap.test("streamGame", function(t) {
+  const serialize = ndjson.serialize();
+  nock("https://lichess.org")
+    .get(`/api/bot/game/stream/${gameId}`)
+    .reply((uri, requestBody) => serialize);
+  serialize.write(gameEventResponse);
+  api.streamGame(gameId, x => {
+    console.log("Callback");
+    t.ok(true, "callback called");
+    t.end();
+  });
+});
+
+tap.test("streamGameEnd", function(t) {
   t.end();
 });
 
