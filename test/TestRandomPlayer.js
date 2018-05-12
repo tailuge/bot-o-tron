@@ -3,6 +3,8 @@ const RandomPlayer = require("../src/bots/RandomPlayer");
 
 const player = new RandomPlayer();
 
+"use strict";
+
 test("getReply", function(t) {
   t.equal(player.getReply({}), "hi", "says hi");
   t.end();

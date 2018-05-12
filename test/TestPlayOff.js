@@ -6,6 +6,8 @@ const PatzerPlayer = require("../src/bots/PatzerPlayer");
 const player1 = new PatzerPlayer();
 const player2 = new PatzerPlayer();
 
+"use strict";
+
 test("playOff draw", function(t) {
   const playOff = new PlayOff(player1, player2);
   t.equal(playOff.score(player1), 0.5, "score starts at 0.5");

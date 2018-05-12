@@ -14,6 +14,8 @@ const gameEventResponse = { id: "2", type: "move" };
 
 const api = new LichessApi(secret);
 
+"use strict";
+
 function assertRequest(t, method, pathregexp, response) {
   moxios.wait(function() {
     let request = moxios.requests.mostRecent();

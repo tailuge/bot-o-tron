@@ -5,6 +5,8 @@ const ChessUtils = require("../src/utils/ChessUtils");
 const player = new SwarmKingPlayer();
 const chess = new ChessUtils();
 
+"use strict";
+
 test("getReply", function(t) {
   t.equal(player.getReply({}), "swarm the king!", "chat says swarm the king!");
   t.end();

@@ -3,6 +3,8 @@ const PatzerPlayer = require("../src/bots/PatzerPlayer");
 
 const player = new PatzerPlayer();
 
+"use strict";
+
 test("getReply", function(t) {
   t.equal(player.getReply({}), "hi", "chat says hi");
   t.end();

@@ -9,6 +9,8 @@ const b8 = chess.coordinates("b8");
 
 const initialPosition = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
 
+"use strict";
+
 test("uci", function(t) {
   t.equal(chess.uci({ from: "e2", to: "e4" }), "e2e4", "pawn to e4");
   t.equal(chess.uci({ from: "a7", to: "a8", flags: "p", piece: "q" }), "a7a8q", "promote to queen on a8");

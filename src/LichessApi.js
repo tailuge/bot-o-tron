@@ -61,20 +61,26 @@ class LichessApi {
     });
   }
 
+  logAndReturn(data) {
+    console.log(JSON.stringify(data.data)); 
+    return data;
+  }
+
   get(URL) {
     console.log(`GET ${URL}`);
     return axios.get(URL + "?v=" + Date.now(), this.axiosConfig)
-      .then(data => { console.log(JSON.stringify(data.data)); return data; })
+      .then(this.logAndReturn)
       .catch(err => console.log(err));
   }
 
   post(URL, body) {
     console.log(`POST ${URL} ` + JSON.stringify(body || {}));
     return axios.post(URL, body || {}, this.axiosConfig)
-      .then(data => { console.log(JSON.stringify(data.data)); return data; })
+      .then(this.logAndReturn)
       .catch(err => console.log(err.response.data));
   }
 
+  
   /**
    * Connect to stream with handler.
    * 
