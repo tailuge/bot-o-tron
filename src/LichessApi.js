@@ -80,7 +80,6 @@ class LichessApi {
       .catch(err => console.log(err.response.data));
   }
 
-  
   /**
    * Connect to stream with handler.
    * 

@@ -6,8 +6,8 @@ const Chess = require("chess.js").Chess;
  */
 class ChessUtils {
 
-  constructor() {
-    this.chess = new Chess();
+  constructor(fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1") {
+    this.chess = new Chess(fen);
   }
 
   reset() {
@@ -113,6 +113,19 @@ class ChessUtils {
   material(colour) {
     const valueOf = { p: 1, n: 3, b: 3, r: 6, q: 9, k: 0 };
     return this.squaresOf(colour).map(square => valueOf[this.chess.get(square).type]).reduce((a, b) => a + b);
+  }
+
+  fenForOtherSide(fen) {
+    if (fen.search(" w ") > 0) {
+      return fen.replace(/ w .*/, " b - - 0 1");
+    }
+    else {
+      return fen.replace(/ b .*/, " w - - 0 2");
+    }
+  }
+
+  newSkipTurn() {
+    return new ChessUtils(this.fenForOtherSide(this.fen()));
   }
 
 }
