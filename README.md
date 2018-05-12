@@ -21,7 +21,6 @@ $ setx API_TOKEN xxxxxxxxxx
 
 ```bash
 $ yarn test
-$ nyc yarn test
 ```
 
 ### Run
@@ -53,13 +52,14 @@ You do not need to own a server to host a BOT, this code also runs in a browser.
 
 ### Tounaments
 
-Compare bots locally - and the winner of the 16 x round-robin tournament is...
+Compare bots locally - and the winner of the 8 x round-robin tournament is...
 
 ```bash
 $ yarn tournament
 
 Results
-[ { player: 'PatzerPlayer        ', score: 41.5 },
-  { player: 'RandomPlayer        ', score: 28 },
-  { player: 'SwarmKingPlayer     ', score: 26.5 } ]
+[ { player: 'AntiPatzerPlayer    ', score: 32.5 },
+  { player: 'PatzerPlayer        ', score: 23 },
+  { player: 'RandomPlayer        ', score: 22.5 },
+  { player: 'SwarmKingPlayer     ', score: 18 } ]
 ```

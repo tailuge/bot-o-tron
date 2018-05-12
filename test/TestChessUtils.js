@@ -85,12 +85,3 @@ tap.test("materialEval", function(t) {
   t.equal(chess.materialEval(), 0, "eval 0 at start");
   t.end();
 });
-
-tap.test("newSkipTurn", function(t) {
-  chess.applyMoves(["e2e4"]);
-  t.equal(chess.turn(), "b", "after first move black to play");
-  t.equal(chess.newSkipTurn().turn(), "w", "white turn after skip move");
-  t.equal(chess.newSkipTurn().newSkipTurn().turn(), "b", "skip twice back to black move");
-  t.end();
-});
-
