@@ -1,5 +1,5 @@
 const tap = require("tap");
-const sinon = require('sinon');
+const sinon = require("sinon");
 
 const RobotUser = require("../src/RobotUser");
 const RandomPlayer = require("../src/bots/RandomPlayer");
@@ -16,7 +16,7 @@ const ratedChallenge = {
     "id": challengeId,
     "status": "created",
     "challenger": { "id": "lovlas" },
-    "destUser": { "id": id, "name": name },
+    "destUser": { id, name },
     "variant": { "key": "standard", "name": "Standard", "short": "Std" },
     "rated": true,
     "timeControl": { "type": "clock", "limit": 300, "increment": 25, "show": "5+25" },
@@ -36,7 +36,7 @@ const gameFullWhite = {
   "variant": { "key": "standard", "name": "Standard", "short": "Std" },
   "clock": { "initial": 1200000, "increment": 10000 },
   "speed": "classical",
-  "white": { "id": id, "name": name },
+  "white": { id, name },
   "black": { "id": "leela", "name": "Leela" },
   "initialFen": "startpos",
   "state": { "type": "gameState", "moves": "" }
@@ -68,13 +68,13 @@ var chat;
 
 tap.beforeEach(function(t) {
   lichessApi = new LichessApi(token);
-  accountInfo = sinon.stub(lichessApi, 'accountInfo');
-  declineChallenge = sinon.stub(lichessApi, 'declineChallenge');
-  acceptChallenge = sinon.stub(lichessApi, 'acceptChallenge');
-  makeMove = sinon.stub(lichessApi, 'makeMove');
-  chat = sinon.stub(lichessApi, 'chat');
-  streamEvents = sinon.stub(lichessApi, 'streamEvents');
-  streamGame = sinon.stub(lichessApi, 'streamGame');
+  accountInfo = sinon.stub(lichessApi, "accountInfo");
+  declineChallenge = sinon.stub(lichessApi, "declineChallenge");
+  acceptChallenge = sinon.stub(lichessApi, "acceptChallenge");
+  makeMove = sinon.stub(lichessApi, "makeMove");
+  chat = sinon.stub(lichessApi, "chat");
+  streamEvents = sinon.stub(lichessApi, "streamEvents");
+  streamGame = sinon.stub(lichessApi, "streamGame");
 
   accountInfo.returns({ data: { "id": "bot-o-tron", "username": "bot-o-tron" } });
   declineChallenge.returns({ data: { "ok": true } });
