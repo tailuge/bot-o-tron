@@ -62,7 +62,7 @@ class LichessApi {
   }
 
   logAndReturn(data) {
-    console.log(JSON.stringify(data.data)); 
+    console.log(JSON.stringify(data.data));
     return data;
   }
 
@@ -77,7 +77,7 @@ class LichessApi {
     console.log(`POST ${URL} ` + JSON.stringify(body || {}));
     return axios.post(URL, body || {}, this.axiosConfig)
       .then(this.logAndReturn)
-      .catch(err => console.log(err.response.data));
+      .catch(err => console.log(err.response || err));
   }
 
   /**

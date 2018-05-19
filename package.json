@@ -14,9 +14,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "codacy-coverage": "^3.0.0",
     "coveralls": "^3.0.0",
+    "moxios": "^0.4.0",
     "nyc": "^11.7.1",
-    "tap": "^11.1.4",
+    "sinon": "^5.0.7",
+    "tap": "^12.0.0",
     "tape": "^4.9.0",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.15"
@@ -24,9 +27,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "chess.js": "^0.10.2",
-    "codacy-coverage": "^3.0.0",
     "express": "^4.16.3",
-    "moxios": "^0.4.0",
     "ndjson": "^1.5.0",
     "nock": "^9.2.5",
     "oboe": "^2.1.4"

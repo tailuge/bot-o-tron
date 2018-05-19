@@ -1,3 +1,5 @@
+const LichessApi = require("./LichessApi");
+
 const RobotUser = require("./RobotUser");
 const PatzerPlayer = require("./bots/PatzerPlayer");
 const AntiPatzerPlayer = require("./bots/AntiPatzerPlayer");
@@ -20,7 +22,7 @@ const AntiPatzerPlayer = require("./bots/AntiPatzerPlayer");
 
 async function startBot(token, player) {
   if (token) {
-    const robot = new RobotUser(token, player);
+    const robot = new RobotUser(new LichessApi(token), player);
     const username = (await robot.start()).data.username;
     return `<a href="https://lichess.org/@/${username}">${username}</a> on lichess.</h1><br/>`;
   }

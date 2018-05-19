@@ -10,8 +10,8 @@ class RobotUser {
   /**
    * Initialise with access token to lichess and a player algorithm.
    */
-  constructor(token, player) {
-    this.api = new LichessApi(token);
+  constructor(api, player) {
+    this.api = api;
     this.player = player;
   }
 
@@ -43,12 +43,13 @@ class RobotUser {
   async handleChallenge(challenge) {
     if (challenge.rated) {
       console.log("Declining rated challenge from " + challenge.challenger.id);
-      this.api.declineChallenge(challenge.id);
+      const response = await this.api.declineChallenge(challenge.id);
+      console.log("Declined", response.data || response);
     }
     else {
       console.log("Accepting unrated challenge from " + challenge.challenger.id);
-      var accept = await this.api.acceptChallenge(challenge.id);
-      console.log("Status " + accept.statusText);
+      const response = await this.api.acceptChallenge(challenge.id);
+      console.log("Accepted", response.data || response);
     }
   }
 
