@@ -5,7 +5,6 @@
   "main": "src/Main.js",
   "scripts": {
     "test": "nyc tap test/*",
-    "test-with-coverage": "tap --coverage-report=lcov test/* | codacy-coverage",
     "start": "node src/Main.js",
     "tournament": "node src/tournament/Main.js",
     "build": "webpack -p"
@@ -14,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "codacy-coverage": "^3.0.0",
     "coveralls": "^3.0.0",
     "moxios": "^0.4.0",
     "nock": "^9.3.2",

@@ -18,7 +18,7 @@ class AntiPatzerPlayer {
       legalMoves.forEach(m => {
         chess.move(m);
         const opponentsMoves = chess.legalMoves();
-        const opponentsMates = opponentsMoves.filter(move => /\#/.test(move.san));
+        const opponentsMates = opponentsMoves.filter(move => /#/.test(move.san));
         const opponentsChecks = opponentsMoves.filter(move => /\+/.test(move.san));
         const opponentsCaptures = opponentsMoves.filter(move => /x/.test(move.san));
         m.metric = -opponentsMoves.length;

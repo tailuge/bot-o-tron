@@ -94,7 +94,7 @@ class ChessUtils {
   }
 
   filterForcing(legalMoves) {
-    const mates = legalMoves.filter(move => /\#/.test(move.san));
+    const mates = legalMoves.filter(move => /#/.test(move.san));
     return mates.length ? mates : legalMoves.filter(move => /\+/.test(move.san));
   }
 

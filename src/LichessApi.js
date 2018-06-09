@@ -92,7 +92,7 @@ class LichessApi {
         url: this.baseURL + URL,
         headers: this.headers,
       })
-      .node("{type}", function(data) {
+      .node("!", function(data) {
         console.log("STREAM data : " + JSON.stringify(data));
         handler(data);
       }).fail(function(errorReport) {
