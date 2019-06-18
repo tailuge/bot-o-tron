@@ -7,7 +7,9 @@
     "test": "nyc tap test/*",
     "start": "node src/Main.js",
     "tournament": "node src/tournament/Main.js",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +30,8 @@
     "chess.js": "^0.10.2",
     "express": "^4.17.1",
     "ndjson": "^1.5.0",
-    "oboe": "^2.1.4"
-  }
+    "oboe": "^2.1.4",
+    "snyk": "^1.161.1"
+  },
+  "snyk": true
 }
