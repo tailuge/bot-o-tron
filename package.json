@@ -14,21 +14,21 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "coveralls": "^3.0.6",
+    "coveralls": "^3.0.9",
     "moxios": "^0.4.0",
     "nock": "^10.0.6",
-    "nyc": "^14.1.1",
-    "sinon": "^7.4.1",
+    "nyc": "^15.0.0",
+    "sinon": "^8.1.1",
     "tap": "^14.6.1",
     "tape": "^4.11.0",
-    "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6"
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.19.2",
     "chess.js": "^0.10.2",
     "express": "^4.17.1",
     "ndjson": "^1.5.0",
-    "oboe": "^2.1.4"
+    "oboe": "^2.1.5"
   }
 }
