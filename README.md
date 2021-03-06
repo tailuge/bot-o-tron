@@ -1,7 +1,7 @@
 # bot-o-tron
 [![Build Status](https://travis-ci.org/tailuge/bot-o-tron.svg?branch=master)](https://travis-ci.org/tailuge/bot-o-tron/) [![Coverage Status](https://coveralls.io/repos/github/tailuge/bot-o-tron/badge.svg?branch=master)](https://coveralls.io/github/tailuge/bot-o-tron?branch=master) [![Dependency Status](https://david-dm.org/tailuge/bot-o-tron.svg)](https://david-dm.org/tailuge/bot-o-tron) [![devDependency Status](https://david-dm.org/tailuge/bot-o-tron/dev-status.svg)](https://david-dm.org/tailuge/bot-o-tron#info=devDependencies) [![CodeFactor](https://www.codefactor.io/repository/github/tailuge/bot-o-tron/badge)](https://www.codefactor.io/repository/github/tailuge/bot-o-tron) [![Open in Gitpod](https://img.shields.io/badge/Gitpod-Open%20in%20Gitpod-%230092CF.svg)](https://gitpod.io/#https://github.com/tailuge/bot-o-tron)
 
-Try out [lichess'](https://lichess.org) bot interface https://lichess.org/api#tag/Chess-Bot
+Try out [lichess'](https://lichess.org) bot interface https://lichess.org/api#tag/Bot
 
 ### Setup
 
