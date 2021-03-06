@@ -27,7 +27,7 @@ class LichessApi {
   }
 
   upgrade() {
-    return this.post("api/bot/accounts/upgrade");
+    return this.post("api/bot/account/upgrade");
   }
 
   accountInfo() {

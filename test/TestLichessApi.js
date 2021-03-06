@@ -85,7 +85,7 @@ tap.test("declineChallenge", async function(t) {
 });
 
 tap.test("upgrade", async function(t) {
-  assertRequest(t, "post", new RegExp("api/bot/accounts/upgrade"), okResponse);
+  assertRequest(t, "post", new RegExp("api/bot/account/upgrade"), okResponse);
   const response = await api.upgrade();
   t.equal(response.data.ok, true, "response correct");
   t.end();
