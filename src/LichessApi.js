@@ -1,7 +1,7 @@
 const axios = require("axios");
 const oboe = require("oboe");
 /**
- * Programatic interface to the web API of lichess https://lichess.org/api#tag/Chess-Bot
+ * Programatic interface to the web API of lichess https://lichess.org/api#tag/Bot
  *  
  */
 class LichessApi {
@@ -27,7 +27,7 @@ class LichessApi {
   }
 
   upgrade() {
-    return this.post("api/bot/accounts/upgrade");
+    return this.post("api/bot/account/upgrade");
   }
 
   accountInfo() {
