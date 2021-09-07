@@ -6,5 +6,6 @@ module.exports = {
     filename: 'library.js',
     path: path.resolve(__dirname, 'dist'),
     library: 'library'
-  }
+  },
+  mode: 'production'
 };

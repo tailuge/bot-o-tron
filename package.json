@@ -7,7 +7,7 @@
     "test": "nyc tap test/*",
     "start": "node src/Main.js",
     "tournament": "node src/tournament/Main.js",
-    "build": "webpack -p",
+    "build": "webpack",
     "deps": "npx yarn-check --skip-unused"
   },
   "keywords": [],
@@ -21,8 +21,8 @@
     "sinon": "^9.0.2",
     "tap": "^14.10.7",
     "tape": "^4.13.2",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0"
   },
   "dependencies": {
     "axios": "^0.19.2",
