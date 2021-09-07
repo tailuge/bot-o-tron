@@ -37,7 +37,7 @@ tap.afterEach(function(t) {
 });
 
 tap.test("streamEvents", function(t) {
-  const serialize = ndjson.serialize();
+  const serialize = ndjson.stringify();
   nock("https://lichess.org")
     .get("/api/stream/event")
     .reply((uri, requestBody) => serialize);
@@ -54,7 +54,7 @@ tap.test("streamEventsEnd", function(t) {
 });
 
 tap.test("streamGame", function(t) {
-  const serialize = ndjson.serialize();
+  const serialize = ndjson.stringify();
   nock("https://lichess.org")
     .get(`/api/bot/game/stream/${gameId}`)
     .reply((uri, requestBody) => serialize);
