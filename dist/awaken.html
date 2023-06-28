@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Awaken Bot-O-Tron</title>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #3498db;
+      border-radius: 50%;
+      animation: spin 5s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="message">Waiting for server to start on <a href="https://render.com">render.com</a></div>
+  <br/>
+  <a href="https://bot-o-tron.onrender.com/">https://bot-o-tron.onrender.com/</a></div>
+  <br/>
+  <div class="spinner"></div>
+  <br/>
+
+  <script>
+    window.addEventListener('load', function() {
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://bot-o-tron.onrender.com/';
+      document.body.appendChild(iframe);
+
+      iframe.addEventListener('load', function() {
+        document.querySelector('.spinner').style.display = 'none';
+        document.querySelector('.message').style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
