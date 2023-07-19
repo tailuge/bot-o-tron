@@ -1,24 +1,21 @@
-const ChessUtils = require("../utils/ChessUtils");
-
+const ChessUtils = require("../utils/ChessUtils")
 
 /**
  * Pick a random legal move.
  */
 class RandomPlayer {
-
   getNextMove(moves) {
-    const chess = new ChessUtils();
-    chess.applyMoves(moves);
-    const legalMoves = chess.legalMoves();
+    const chess = new ChessUtils()
+    chess.applyMoves(moves)
+    const legalMoves = chess.legalMoves()
     if (legalMoves.length) {
-      return chess.pickRandomMove(legalMoves);
+      return chess.pickRandomMove(legalMoves)
     }
   }
 
   getReply(chat) {
-    return "hi";
+    return "hi"
   }
-
 }
 
-module.exports = RandomPlayer;
+module.exports = RandomPlayer

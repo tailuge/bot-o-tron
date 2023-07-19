@@ -8,7 +8,8 @@
     "start": "node src/Main.js",
     "tournament": "node src/tournament/Main.js",
     "build": "echo 'runs directly with node'",
-    "deps": "npx yarn-check --skip-unused"
+    "deps": "npx yarn-check --skip-unused",
+    "prettify": "prettier --write --trailing-comma es5 --no-semi {src,test}/**/*.[jt]s"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +20,7 @@
     "nock": "^10.0.6",
     "nyc": "^15.1.0",
     "sinon": "^9.0.2",
-    "tap": "^14.10.7",
+    "tap": "^16.3.7",
     "tape": "^4.13.2"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "chess.js": "^0.12.0",
     "express": "^4.17.1",
     "ndjson": "^2.0.0",
-    "oboe": "^2.1.5"
+    "oboe": "^2.1.5",
+    "prettier": "^3.0.0"
   }
 }
