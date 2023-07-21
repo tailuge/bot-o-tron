@@ -41,10 +41,10 @@ tap.afterEach(function (_) {
 
 tap.test("streamEvents", function (t) {
   const serialize = ndjson.stringify()
-  nock("https://lichess.org")
-    .get("/api/stream/event")
-    .reply((uri, requestBody) => serialize)
+  nock("https://lichess.org").get("/api/stream/event").reply(200, serialize)
+
   serialize.write(eventResponse)
+
   api.streamEvents((x) => {
     console.log("Callback")
     t.ok(true, "callback called")
@@ -60,7 +60,7 @@ tap.test("streamGame", function (t) {
   const serialize = ndjson.stringify()
   nock("https://lichess.org")
     .get(`/api/bot/game/stream/${gameId}`)
-    .reply((uri, requestBody) => serialize)
+    .reply(200, serialize)
   serialize.write(gameEventResponse)
   api.streamGame(gameId, (x) => {
     console.log("Callback")
