@@ -5,7 +5,7 @@
   "main": "src/Main.js",
   "scripts": {
     "test": "nyc tap test/*",
-    "coverage": "nyc --reporter=html tap test/*",
+    "coverage": "nyc --reporter=lcov tap test/*",
     "start": "node src/Main.js",
     "tournament": "node src/tournament/Main.js",
     "build": "echo 'runs directly with node'",
