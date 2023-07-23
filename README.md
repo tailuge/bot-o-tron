@@ -23,7 +23,7 @@ $ setx API_TOKEN xxxxxxxxxx
 
 ### Run
 
-The project runs as a express node server that connects to the lichess BOT account using the API_TOKEN
+The project runs as an express node server that connects to the lichess BOT account using the API_TOKEN
 
 ```bash
 $ yarn start
