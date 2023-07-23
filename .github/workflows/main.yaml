@@ -26,7 +26,7 @@ jobs:
 
       - name: generate coverage
         run: |
-          yarn coverage
+          yarn test
           echo done
           
       - name: Upload coverage reports to Codecov
@@ -34,4 +34,3 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
-          
