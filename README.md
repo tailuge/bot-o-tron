@@ -1,7 +1,9 @@
 # bot-o-tron
-[![Build Status](https://travis-ci.org/tailuge/bot-o-tron.svg?branch=master)](https://travis-ci.org/tailuge/bot-o-tron/) [![Coverage Status](https://coveralls.io/repos/github/tailuge/bot-o-tron/badge.svg?branch=master)](https://coveralls.io/github/tailuge/bot-o-tron?branch=master) [![CodeFactor](https://www.codefactor.io/repository/github/tailuge/bot-o-tron/badge)](https://www.codefactor.io/repository/github/tailuge/bot-o-tron) [![Open in Gitpod](https://img.shields.io/badge/Gitpod-Open%20in%20Gitpod-%230092CF.svg)](https://gitpod.io/#https://github.com/tailuge/bot-o-tron) 
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=tailuge_bot-o-tron&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=tailuge_bot-o-tron) [![Coverage Status](https://coveralls.io/repos/github/tailuge/bot-o-tron/badge.svg?branch=master)](https://coveralls.io/github/tailuge/bot-o-tron?branch=master) [![CodeFactor](https://www.codefactor.io/repository/github/tailuge/bot-o-tron/badge)](https://www.codefactor.io/repository/github/tailuge/bot-o-tron) [![Open in Gitpod](https://img.shields.io/badge/Gitpod-Open%20in%20Gitpod-%230092CF.svg)](https://gitpod.io/#https://github.com/tailuge/bot-o-tron) 
 
-This project creates a simple chess bot using javascript that connects to [lichess'](https://lichess.org) bot interface https://lichess.org/api#tag/Bot . This project can be hosted free on cloud providers such as [render.com](https://render.com). Play against this bot unrated now on lichess at [@bot-o-tron](https://lichess.org/@/bot-o-tron)
+This project creates a simple chess bot using javascript that connects to [lichess'](https://lichess.org) bot interface https://lichess.org/api#tag/Bot . This project can be hosted free on cloud providers such as [render.com](https://render.com). 
+
+* Play against this bot unrated now on lichess at [@bot-o-tron](https://lichess.org/@/bot-o-tron)
 
 
 ### Setup
@@ -9,7 +11,7 @@ This project creates a simple chess bot using javascript that connects to [liche
 - Get an [API token](https://lichess.org/account/oauth/token) from lichess.org and add it as an environment variable on your machine or cloud hosting provider.
 
 ```bash
-$ nvm use v10.15.3
+$ nvm use v18.16.1
 $ yarn install
 
 # Linux

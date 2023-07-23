@@ -19,8 +19,8 @@ const tournament = new Tournament(players, 16)
 
 console.log("Start")
 
-var rounds = 8
-var round = 1
+const rounds = 8
+let round = 1
 
 console.log(players)
 

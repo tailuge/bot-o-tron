@@ -63,7 +63,7 @@ class Game {
   }
 
   isTurn(colour, moves) {
-    var parity = moves.length % 2
+    const parity = moves.length % 2
     return colour === "white" ? parity === 0 : parity === 1
   }
 }

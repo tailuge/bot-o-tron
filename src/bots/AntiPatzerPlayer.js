@@ -9,7 +9,7 @@ class AntiPatzerPlayer {
   getNextMove(moves) {
     const chess = new ChessUtils()
     chess.applyMoves(moves)
-    var legalMoves = chess.legalMoves()
+    const legalMoves = chess.legalMoves()
 
     if (legalMoves.length) {
       legalMoves.forEach((m) => {

@@ -7,7 +7,7 @@ class SwarmKingPlayer {
   getNextMove(moves) {
     const chess = new ChessUtils()
     chess.applyMoves(moves)
-    var legalMoves = chess.legalMoves()
+    let legalMoves = chess.legalMoves()
     const forcing = chess.filterForcing(legalMoves)
 
     if (forcing.length) {

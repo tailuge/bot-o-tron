@@ -57,15 +57,15 @@ const chatSelf = {
  * login, accept challenge and game play sequence of actions against a mock lichess.
  */
 
-var robotUser
-var lichessApi
-var accountInfo
-var declineChallenge
-var acceptChallenge
-var streamEvents
-var streamGame
-var makeMove
-var chat
+let robotUser
+let lichessApi
+let accountInfo
+let declineChallenge
+let acceptChallenge
+let streamEvents
+let streamGame
+let makeMove
+let chat
 
 tap.beforeEach(function (_) {
   lichessApi = new LichessApi(token)

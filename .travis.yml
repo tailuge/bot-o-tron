@@ -1,8 +1,0 @@
-language: node_js
-node_js:
-  - "10.15.3"
-before_script:
-after_success:
-  - nyc report --reporter=text-lcov | coveralls
-  - nyc report --reporter=text-lcov | codacy-coverage
-
