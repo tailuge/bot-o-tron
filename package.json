@@ -10,6 +10,7 @@
     "tournament": "node src/tournament/Main.js",
     "build": "echo 'runs directly with node'",
     "deps": "npx yarn-check --skip-unused",
+    "markdownlint": "npx markdownlint-cli2 README.md --fix",
     "prettify": "prettier --write --trailing-comma es5 --no-semi {src,test}/**/*.[jt]s"
   },
   "keywords": [],
