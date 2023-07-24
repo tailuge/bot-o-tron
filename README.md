@@ -55,7 +55,7 @@ This code auto deploys and is live at https://bot-o-tron.onrender.com/
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
 
-### Tounaments
+### Tournaments
 
 Compare bots locally in a round-robin tournament 
 
