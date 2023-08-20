@@ -1,7 +1,7 @@
 {
   "name": "lichess-node-bot",
   "version": "1.0.0",
-  "description": "Lichess bot event and game code flow example",
+  "description": "Lichess bot event and game code example",
   "main": "src/Main.js",
   "scripts": {
     "test": "nyc tap test/*",
@@ -18,7 +18,7 @@
   "license": "ISC",
   "devDependencies": {
     "moxios": "^0.4.0",
-    "nock": "^13.3.2",
+    "nock": "^13.3.3",
     "nyc": "^15.1.0",
     "sinon": "^15.2.0",
     "tap": "^16.3.8",
@@ -30,6 +30,6 @@
     "express": "^4.18.2",
     "ndjson": "^2.0.0",
     "oboe": "^2.1.5",
-    "prettier": "^3.0.1"
+    "prettier": "^3.0.2"
   }
 }
